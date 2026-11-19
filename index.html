@@ -19,6 +19,23 @@
   --ac:#9b7cec;
   --acr:155,124,236;
   --c1:#e09848;--c2:#5b9fd4;--c3:#9b7cec;--c4:#52b385;
+  --popup-bg:#14141a;
+  --shadow-popup:0 24px 56px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.04);
+}
+body.light{
+  --bg:#f0f0f5;
+  --sb:#ffffff;
+  --bd:rgba(0,0,0,.09);
+  --bh:rgba(0,0,0,.18);
+  --sf:rgba(0,0,0,.03);
+  --sfh:rgba(0,0,0,.07);
+  --tx:#1a1a2e;
+  --t2:rgba(26,26,46,.6);
+  --t3:rgba(26,26,46,.38);
+  --ac:#7c5cd6;
+  --acr:124,92,214;
+  --popup-bg:#ffffff;
+  --shadow-popup:0 24px 56px rgba(0,0,0,.18),0 0 0 1px rgba(0,0,0,.07);
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{height:100%;overflow:hidden}
@@ -169,8 +186,8 @@ body{background:var(--bg);color:var(--tx);font-family:'Inter',sans-serif;font-si
 }
 .popup-wrap.open{opacity:1;pointer-events:all}
 .popup{
-  background:#14141a;
-  border:1px solid rgba(255,255,255,.1);
+  background:var(--popup-bg);
+  border:1px solid var(--bd);
   border-radius:14px;
   padding:24px 24px 20px;width:100%;max-width:480px;
   max-height:88vh;
@@ -179,7 +196,7 @@ body{background:var(--bg);color:var(--tx);font-family:'Inter',sans-serif;font-si
   position:relative;
   transform:scale(.95) translateY(8px);
   transition:transform .22s cubic-bezier(.34,1.4,.64,1);
-  box-shadow:0 24px 56px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.04);
+  box-shadow:var(--shadow-popup);
   scrollbar-width:thin;
   scrollbar-color:rgba(155,124,236,.35) transparent;
 }
@@ -190,11 +207,11 @@ body{background:var(--bg);color:var(--tx);font-family:'Inter',sans-serif;font-si
 .popup-close{
   position:absolute;top:10px;right:10px;
   width:26px;height:26px;border-radius:6px;
-  border:1px solid var(--bd);background:transparent;
-  color:var(--t3);font-size:.8rem;cursor:pointer;
+  border:1px solid rgba(255,60,60,.35);background:transparent;
+  color:#ff3c3c;font-size:.8rem;cursor:pointer;
   transition:all .12s;display:flex;align-items:center;justify-content:center;
 }
-.popup-close:hover{background:var(--sfh);color:var(--t2)}
+.popup-close:hover{background:rgba(255,60,60,.12);color:#ff5555;border-color:rgba(255,60,60,.6)}
 .popup-num{
   font-size:.65rem;font-weight:700;letter-spacing:.1em;
   color:rgba(var(--acr),.75);margin-bottom:12px;
@@ -309,6 +326,32 @@ body{background:var(--bg);color:var(--tx);font-family:'Inter',sans-serif;font-si
   .ct-title{font-size:.74rem}
 }
 
+/* ════════════════════════════════
+   THEME TOGGLE
+════════════════════════════════ */
+.theme-toggle{
+  display:flex;align-items:center;gap:7px;
+  padding:0 16px;height:100%;
+  border-left:1px solid var(--bd);
+  cursor:pointer;user-select:none;flex-shrink:0;
+}
+.theme-toggle:hover .tt-track{border-color:var(--bh)}
+.tt-icon{font-size:.85rem;opacity:.6;line-height:1}
+.tt-track{
+  width:36px;height:20px;border-radius:10px;
+  border:1px solid var(--bd);
+  background:var(--sf);
+  position:relative;transition:background .2s,border-color .2s;
+}
+body.light .tt-track{background:rgba(124,92,214,.18);border-color:rgba(124,92,214,.35)}
+.tt-thumb{
+  position:absolute;top:3px;left:3px;
+  width:12px;height:12px;border-radius:50%;
+  background:var(--t3);
+  transition:transform .22s cubic-bezier(.4,0,.2,1),background .2s;
+}
+body.light .tt-thumb{transform:translateX(16px);background:var(--ac)}
+
 @keyframes spin{to{transform:rotate(360deg)}}
 .spin{display:inline-block;animation:spin 1s linear infinite;}
 
@@ -376,6 +419,11 @@ body{background:var(--bg);color:var(--tx);font-family:'Inter',sans-serif;font-si
     <div class="tb-breadcrumb" id="breadcrumb">
       <span style="color:var(--t3)">Картки Знань</span>
     </div>
+  </div>
+  <div class="theme-toggle" id="theme-toggle" title="Змінити тему">
+    <span class="tt-icon">🌙</span>
+    <div class="tt-track"><div class="tt-thumb"></div></div>
+    <span class="tt-icon">☀️</span>
   </div>
 </div>
 
@@ -650,6 +698,18 @@ function buildSidebar(){
     sidebar.appendChild(ci);
   });
 }
+
+// ═══════════════════════════════════════════
+// THEME TOGGLE
+// ═══════════════════════════════════════════
+(function(){
+  const saved=localStorage.getItem('vikha-theme');
+  if(saved==='light')document.body.classList.add('light');
+})();
+document.getElementById('theme-toggle').addEventListener('click',()=>{
+  document.body.classList.toggle('light');
+  localStorage.setItem('vikha-theme',document.body.classList.contains('light')?'light':'dark');
+});
 
 buildSidebar();
 </script>
