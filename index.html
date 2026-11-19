@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>РОЗУМ — 400 карток</title>
+<title>ВІХА — Картки Знань</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -36,7 +36,7 @@ body{background:var(--bg);color:var(--tx);font-family:'Inter',sans-serif;font-si
   width:240px;min-width:240px;padding:0 20px;
   display:flex;align-items:center;gap:9px;
   border-right:1px solid var(--bd);
-  height:100%;
+  height:100%;cursor:pointer;
 }
 .tb-mark{
   width:22px;height:22px;border-radius:6px;
@@ -309,19 +309,70 @@ body{background:var(--bg);color:var(--tx);font-family:'Inter',sans-serif;font-si
 
 @keyframes spin{to{transform:rotate(360deg)}}
 .spin{display:inline-block;animation:spin 1s linear infinite;}
+
+/* ── START PAGE ── */
+.start-page{
+  flex:1;display:flex;align-items:center;justify-content:center;
+  flex-direction:column;gap:0;padding-bottom:20px;
+}
+.sp-logo{
+  width:72px;height:72px;
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:20px;opacity:.9;
+}
+.sp-logo svg{filter:drop-shadow(0 0 18px rgba(155,124,236,.55));}
+.sp-title{
+  font-size:1.65rem;font-weight:700;letter-spacing:.18em;
+  color:var(--tx);margin-bottom:6px;
+}
+.sp-sub{
+  font-size:.72rem;letter-spacing:.35em;text-transform:uppercase;
+  color:var(--ac);opacity:.6;margin-bottom:36px;
+}
+.sp-stats{
+  display:flex;gap:28px;margin-bottom:36px;
+}
+.sp-stat{
+  display:flex;flex-direction:column;align-items:center;gap:4px;
+}
+.sp-stat-n{
+  font-size:1.5rem;font-weight:700;
+  color:var(--ac);opacity:.85;line-height:1;
+}
+.sp-stat-l{
+  font-size:.62rem;letter-spacing:.1em;color:var(--t3);text-transform:uppercase;
+}
+.sp-divider{
+  width:1px;background:var(--bd);align-self:stretch;
+}
+.sp-hint{
+  font-size:.74rem;color:var(--t3);display:flex;align-items:center;gap:7px;
+}
+.sp-hint-arrow{
+  font-size:.9rem;opacity:.35;
+}
 </style>
 </head>
 <body>
 
 <div class="topbar">
   <div class="tb-logo">
-    <div class="tb-mark">✦</div>
-    <div class="tb-name">РОЗУМ</div>
+    <div class="tb-mark">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="12,2 22,12 12,22 2,12"/>
+        <line x1="12" y1="5" x2="12" y2="8.5"/>
+        <line x1="12" y1="15.5" x2="12" y2="19"/>
+        <line x1="5" y1="12" x2="8.5" y2="12"/>
+        <line x1="15.5" y1="12" x2="19" y2="12"/>
+        <circle cx="12" cy="12" r="1.8" fill="currentColor" stroke="none"/>
+      </svg>
+    </div>
+    <div class="tb-name">ВІХА</div>
   </div>
   <button class="sb-toggle" id="sb-toggle" aria-label="Меню">☰</button>
   <div class="tb-info">
     <div class="tb-breadcrumb" id="breadcrumb">
-      <span style="color:var(--t3)">400 карток навчання та саморозвитку</span>
+      <span style="color:var(--t3)">Картки Знань</span>
     </div>
   </div>
 </div>
@@ -329,9 +380,50 @@ body{background:var(--bg);color:var(--tx);font-family:'Inter',sans-serif;font-si
 <div class="app-body">
   <aside class="sidebar" id="sidebar"></aside>
   <main class="main" id="main">
-    <div class="empty-state">
-      <div class="es-icon">↖</div>
-      <div class="es-text">Оберіть блок у дереві</div>
+    <div class="start-page" id="start-page">
+      <div class="sp-logo">
+        <svg width="72" height="72" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g stroke="#9b7cec" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="32,4 60,32 32,60 4,32"/>
+            <polygon points="32,12 52,32 32,52 12,32"/>
+            <line x1="32" y1="8" x2="32" y2="23"/>
+            <line x1="32" y1="41" x2="32" y2="56"/>
+            <line x1="8" y1="32" x2="23" y2="32"/>
+            <line x1="41" y1="32" x2="56" y2="32"/>
+            <polyline points="20,16 23,19 20,22"/>
+            <polyline points="15,21 18,24 15,27"/>
+            <polyline points="44,16 41,19 44,22"/>
+            <polyline points="49,21 46,24 49,27"/>
+            <polyline points="20,48 23,45 20,42"/>
+            <polyline points="15,43 18,40 15,37"/>
+            <polyline points="44,48 41,45 44,42"/>
+            <polyline points="49,43 46,40 49,37"/>
+          </g>
+          <circle cx="32" cy="32" r="3.2" fill="#9b7cec"/>
+        </svg>
+      </div>
+      <div class="sp-title">ВІХА</div>
+      <div class="sp-sub">Картки Знань</div>
+      <div class="sp-stats">
+        <div class="sp-stat">
+          <div class="sp-stat-n">2000</div>
+          <div class="sp-stat-l">Карток</div>
+        </div>
+        <div class="sp-divider"></div>
+        <div class="sp-stat">
+          <div class="sp-stat-n">7</div>
+          <div class="sp-stat-l">Розділів</div>
+        </div>
+        <div class="sp-divider"></div>
+        <div class="sp-stat">
+          <div class="sp-stat-n">35</div>
+          <div class="sp-stat-l">Блоків</div>
+        </div>
+      </div>
+      <div class="sp-hint">
+        <span class="sp-hint-arrow">←</span>
+        <span>Оберіть розділ у бічній панелі</span>
+      </div>
     </div>
   </main>
 </div>
@@ -382,6 +474,44 @@ function loadCat(id){
   });
 }
 
+function showStartPage(){
+  breadcrumb.innerHTML='<span style="color:var(--t3)">Картки Знань</span>';
+  document.querySelectorAll('.blk-head').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.cat-item').forEach(x=>x.classList.remove('open'));
+  main.innerHTML=`<div class="start-page">
+    <div class="sp-logo">
+      <svg width="72" height="72" viewBox="0 0 64 64" fill="none">
+        <g stroke="#9b7cec" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="32,4 60,32 32,60 4,32"/>
+          <polygon points="32,12 52,32 32,52 12,32"/>
+          <line x1="32" y1="8" x2="32" y2="23"/>
+          <line x1="32" y1="41" x2="32" y2="56"/>
+          <line x1="8" y1="32" x2="23" y2="32"/>
+          <line x1="41" y1="32" x2="56" y2="32"/>
+          <polyline points="20,16 23,19 20,22"/>
+          <polyline points="15,21 18,24 15,27"/>
+          <polyline points="44,16 41,19 44,22"/>
+          <polyline points="49,21 46,24 49,27"/>
+          <polyline points="20,48 23,45 20,42"/>
+          <polyline points="15,43 18,40 15,37"/>
+          <polyline points="44,48 41,45 44,42"/>
+          <polyline points="49,43 46,40 49,37"/>
+        </g>
+        <circle cx="32" cy="32" r="3.2" fill="#9b7cec"/>
+      </svg>
+    </div>
+    <div class="sp-title">ВІХА</div>
+    <div class="sp-sub">Картки Знань</div>
+    <div class="sp-stats">
+      <div class="sp-stat"><div class="sp-stat-n">2000</div><div class="sp-stat-l">Карток</div></div>
+      <div class="sp-divider"></div>
+      <div class="sp-stat"><div class="sp-stat-n">7</div><div class="sp-stat-l">Розділів</div></div>
+      <div class="sp-divider"></div>
+      <div class="sp-stat"><div class="sp-stat-n">35</div><div class="sp-stat-l">Блоків</div></div>
+    </div>
+    <div class="sp-hint"><span class="sp-hint-arrow">←</span><span>Оберіть розділ у бічній панелі</span></div>
+  </div>`;
+}
 function showSpinner(){
   main.innerHTML='<div class="empty-state"><div class="es-icon spin">⟳</div><div class="es-text">Завантаження…</div></div>';
 }
@@ -413,6 +543,7 @@ function closePopup(){
   document.body.style.overflow='';
   if(currentTile){currentTile.classList.remove('focused');currentTile=null;}
 }
+document.querySelector('.tb-logo').addEventListener('click',showStartPage);
 document.getElementById('pclose').addEventListener('click',closePopup);
 popupWrap.addEventListener('click',e=>{if(e.target===popupWrap)closePopup();});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closePopup();});
