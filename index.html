@@ -31,6 +31,7 @@ body{background:var(--bg);color:var(--tx);font-family:'Inter',sans-serif;font-si
   border-bottom:1px solid var(--bd);
   background:var(--sb);
   flex-shrink:0;
+  position:relative;z-index:220;
 }
 .tb-logo{
   width:240px;min-width:240px;padding:0 20px;
@@ -242,8 +243,9 @@ body{background:var(--bg);color:var(--tx);font-family:'Inter',sans-serif;font-si
   position:fixed;inset:0;z-index:200;
   background:rgba(0,0,0,.55);
   opacity:0;transition:opacity .22s;
+  pointer-events:none;
 }
-.sb-overlay.show{opacity:1}
+.sb-overlay.show{opacity:1;pointer-events:all;}
 
 /* ════════════════════════════════
    TABLET  ≤ 900px
