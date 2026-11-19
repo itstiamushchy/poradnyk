@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>РОЗУМ — 400 карток</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0a0d;
+  --sb:#0e0e13;
+  --bd:rgba(255,255,255,.065);
+  --bh:rgba(255,255,255,.13);
+  --sf:rgba(255,255,255,.03);
+  --sfh:rgba(255,255,255,.065);
+  --tx:#e8e8ef;
+  --t2:rgba(232,232,239,.5);
+  --t3:rgba(232,232,239,.27);
+  --ac:#9b7cec;
+  --acr:155,124,236;
+  --c1:#e09848;--c2:#5b9fd4;--c3:#9b7cec;--c4:#52b385;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{background:var(--bg);color:var(--tx);font-family:'Inter',sans-serif;font-size:13px;display:flex;flex-direction:column}
+
+/* ── TOPBAR ── */
+.topbar{
+  display:flex;align-items:center;gap:0;
+  height:48px;min-height:48px;
+  border-bottom:1px solid var(--bd);
+  background:var(--sb);
+  flex-shrink:0;
+}
+.tb-logo{
+  width:240px;min-width:240px;padding:0 20px;
+  display:flex;align-items:center;gap:9px;
+  border-right:1px solid var(--bd);
+  height:100%;
+}
+.tb-mark{
+  width:22px;height:22px;border-radius:6px;
+  background:linear-gradient(135deg,rgba(var(--acr),.35),rgba(var(--acr),.1));
+  border:1px solid rgba(var(--acr),.25);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.7rem;color:var(--ac);
+}
+.tb-name{font-size:.8rem;font-weight:600;letter-spacing:.08em;color:var(--tx)}
+.tb-info{flex:1;padding:0 24px;display:flex;align-items:center;gap:6px}
+.tb-breadcrumb{font-size:.78rem;color:var(--t3);display:flex;align-items:center;gap:6px}
+.tb-breadcrumb .sep{color:var(--t3);opacity:.5}
+.tb-breadcrumb .active{color:var(--t2)}
+
+/* ── BODY ── */
+.app-body{display:flex;flex:1;overflow:hidden}
+
+/* ── SIDEBAR ── */
+.sidebar{
+  width:240px;min-width:240px;
+  background:var(--sb);
+  border-right:1px solid var(--bd);
+  overflow-y:auto;
+  display:flex;flex-direction:column;
+}
+.sidebar::-webkit-scrollbar{width:3px}
+.sidebar::-webkit-scrollbar-thumb{background:rgba(255,255,255,.08);border-radius:2px}
+
+.sb-section{padding:8px 0}
+.sb-section+.sb-section{border-top:1px solid var(--bd)}
+
+.cat-item{}
+.cat-head{
+  display:flex;align-items:center;gap:8px;
+  padding:7px 14px 7px 12px;cursor:pointer;
+  transition:background .12s;user-select:none;
+}
+.cat-head:hover{background:var(--sfh)}
+.cat-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0;opacity:.7}
+.cat-label{font-size:.78rem;font-weight:600;color:var(--t2);flex:1;letter-spacing:.01em}
+.cat-cnt{font-size:.68rem;color:var(--t3)}
+.cat-chevron{font-size:.55rem;color:var(--t3);transition:transform .18s;margin-left:2px}
+.cat-item.open .cat-chevron{transform:rotate(90deg)}
+.cat-item.open .cat-label{color:var(--tx)}
+
+.cat-blocks{display:none;padding:2px 0 4px}
+.cat-item.open .cat-blocks{display:block}
+
+.blk-head{
+  display:flex;align-items:center;gap:7px;
+  padding:5px 14px 5px 24px;cursor:pointer;
+  border-radius:0;transition:all .12s;user-select:none;
+  position:relative;
+}
+.blk-head::before{
+  content:'';position:absolute;left:14px;top:50%;transform:translateY(-50%);
+  width:1px;height:60%;background:var(--bd);
+}
+.blk-head:hover{background:var(--sfh)}
+.blk-head.active{background:rgba(var(--acr),.08)}
+.blk-head.active .blk-name{color:var(--ac)}
+.blk-head.active::after{
+  content:'';position:absolute;right:0;top:4px;bottom:4px;
+  width:2px;background:var(--ac);border-radius:2px 0 0 2px;
+  opacity:.8;
+}
+.blk-emoji{font-size:.78rem;opacity:.5}
+.blk-name{font-size:.75rem;color:var(--t3);line-height:1.4;flex:1;transition:color .12s}
+.blk-head:hover .blk-name{color:var(--t2)}
+.blk-cnt{font-size:.65rem;color:var(--t3);opacity:.7}
+
+/* ── MAIN ── */
+.main{flex:1;overflow-y:auto;padding:28px 28px 60px;display:flex;flex-direction:column;gap:0}
+.main::-webkit-scrollbar{width:4px}
+.main::-webkit-scrollbar-thumb{background:rgba(255,255,255,.07);border-radius:2px}
+
+/* Empty state */
+.empty-state{
+  flex:1;display:flex;align-items:center;justify-content:center;
+  flex-direction:column;gap:10px;padding-bottom:40px;
+  color:var(--t3);text-align:center;
+}
+.es-icon{font-size:1.8rem;opacity:.25;margin-bottom:4px}
+.es-text{font-size:.8rem}
+
+/* Block title in main */
+.main-blk-head{
+  display:flex;align-items:baseline;gap:10px;
+  margin-bottom:20px;padding-bottom:14px;
+  border-bottom:1px solid var(--bd);
+}
+.mh-emoji{font-size:1rem;opacity:.6}
+.mh-title{font-size:.9rem;font-weight:600;color:var(--tx)}
+.mh-cnt{font-size:.72rem;color:var(--t3);margin-left:auto}
+
+/* Cards grid */
+.cards-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(190px,1fr));
+  gap:8px;
+}
+
+/* Small card tile */
+.card-tile{
+  padding:12px 13px;border-radius:8px;
+  border:1px solid var(--bd);
+  background:var(--sf);cursor:pointer;
+  transition:all .15s;position:relative;
+}
+.card-tile:hover{
+  background:var(--sfh);border-color:var(--bh);
+}
+.card-tile.focused{
+  border-color:rgba(var(--acr),.4);
+  background:rgba(var(--acr),.06);
+  box-shadow:0 0 0 3px rgba(var(--acr),.08);
+}
+.ct-num{font-size:.65rem;color:var(--t3);margin-bottom:5px;font-variant-numeric:tabular-nums}
+.ct-title{font-size:.8rem;font-weight:500;color:var(--t2);line-height:1.45;transition:color .15s}
+.card-tile:hover .ct-title{color:var(--tx)}
+
+/* ── POPUP ── */
+.popup-wrap{
+  position:fixed;inset:0;z-index:300;
+  display:flex;align-items:center;justify-content:center;
+  padding:20px;
+  background:rgba(10,10,13,.7);
+  opacity:0;pointer-events:none;transition:opacity .2s;
+}
+.popup-wrap.open{opacity:1;pointer-events:all}
+.popup{
+  background:#14141a;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:14px;
+  padding:24px 24px 20px;width:100%;max-width:480px;
+  max-height:88vh;
+  overflow-y:auto;
+  overflow-x:hidden;
+  position:relative;
+  transform:scale(.95) translateY(8px);
+  transition:transform .22s cubic-bezier(.34,1.4,.64,1);
+  box-shadow:0 24px 56px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.04);
+  scrollbar-width:thin;
+  scrollbar-color:rgba(155,124,236,.35) transparent;
+}
+.popup::-webkit-scrollbar{width:4px}
+.popup::-webkit-scrollbar-track{background:transparent}
+.popup::-webkit-scrollbar-thumb{background:rgba(155,124,236,.35);border-radius:4px}
+.popup-wrap.open .popup{transform:scale(1) translateY(0)}
+.popup-close{
+  position:absolute;top:10px;right:10px;
+  width:26px;height:26px;border-radius:6px;
+  border:1px solid var(--bd);background:transparent;
+  color:var(--t3);font-size:.8rem;cursor:pointer;
+  transition:all .12s;display:flex;align-items:center;justify-content:center;
+}
+.popup-close:hover{background:var(--sfh);color:var(--t2)}
+.popup-num{
+  font-size:.65rem;font-weight:700;letter-spacing:.1em;
+  color:rgba(var(--acr),.75);margin-bottom:12px;
+}
+.popup-title{
+  font-size:.98rem;font-weight:600;line-height:1.5;
+  color:var(--tx);margin-bottom:14px;
+  padding-right:20px;
+}
+.popup-line{height:1px;background:var(--bd);margin-bottom:14px}
+.popup-body{
+  font-size:.85rem;line-height:1.72;
+  color:var(--t2);
+}
+.popup-body .step{display:flex;gap:10px;margin-bottom:10px;padding:8px 10px;border-radius:8px;background:rgba(255,255,255,.04);border-left:3px solid var(--ac);}
+.popup-body .step-num{font-size:.7rem;font-weight:700;color:rgba(var(--acr),.8);min-width:22px;padding-top:1px;}
+.popup-body .step-text{font-size:.82rem;line-height:1.6;color:var(--t2);}
+.popup-body .step-text b{color:var(--tx);}
+.popup-body .step.c1{border-color:var(--c1);}
+.popup-body .step.c2{border-color:var(--c2);}
+.popup-body .step.c3{border-color:var(--c3);}
+.popup-body .step.c4{border-color:var(--c4);}
+.popup-body .final-note{margin-top:10px;padding:8px 10px;border-radius:8px;background:rgba(155,124,236,.1);border:1px solid rgba(155,124,236,.25);font-size:.78rem;color:var(--t2);line-height:1.6;}
+.popup-body .rule-note{padding:8px 10px;border-radius:8px;background:rgba(255,255,255,.04);font-size:.8rem;color:var(--t2);margin-bottom:12px;line-height:1.5;}
+
+
+/* ════════════════════════════════
+   MOBILE HAMBURGER BUTTON
+════════════════════════════════ */
+.sb-toggle{
+  display:none;
+  width:36px;height:36px;border-radius:8px;
+  border:1px solid var(--bd);background:transparent;
+  color:var(--t2);cursor:pointer;
+  align-items:center;justify-content:center;
+  flex-shrink:0;font-size:1rem;
+  transition:background .12s;
+}
+.sb-toggle:hover{background:var(--sfh)}
+
+/* ════════════════════════════════
+   MOBILE SIDEBAR OVERLAY
+════════════════════════════════ */
+.sb-overlay{
+  display:none;
+  position:fixed;inset:0;z-index:200;
+  background:rgba(0,0,0,.55);
+  opacity:0;transition:opacity .22s;
+}
+.sb-overlay.show{opacity:1}
+
+/* ════════════════════════════════
+   TABLET  ≤ 900px
+════════════════════════════════ */
+@media(max-width:900px){
+  .tb-logo{width:52px;min-width:52px;padding:0 14px;border-right:none}
+  .tb-name{display:none}
+  .sb-toggle{display:flex;margin-left:4px}
+  .tb-info{padding:0 12px}
+
+  .sidebar{
+    position:fixed;left:0;top:48px;bottom:0;
+    width:270px;min-width:0;
+    transform:translateX(-100%);
+    transition:transform .24s cubic-bezier(.4,0,.2,1);
+    z-index:210;box-shadow:4px 0 24px rgba(0,0,0,.4);
+  }
+  .sidebar.mobile-open{transform:translateX(0)}
+  .sb-overlay{display:block}
+
+  .main{padding:20px 16px 80px}
+
+  .cards-grid{
+    grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
+    gap:7px;
+  }
+}
+
+/* ════════════════════════════════
+   PHONE  ≤ 540px
+════════════════════════════════ */
+@media(max-width:540px){
+  .cards-grid{
+    grid-template-columns:repeat(2,1fr);
+    gap:6px;
+  }
+  .card-tile{padding:10px 11px}
+  .ct-title{font-size:.77rem}
+
+  .popup-wrap{padding:0;align-items:flex-end}
+  .popup{
+    border-radius:18px 18px 0 0;
+    max-width:100%;
+    max-height:92vh;
+    padding:20px 18px 32px;
+  }
+  .popup-close{
+    width:32px;height:32px;top:12px;right:12px;
+    font-size:.9rem;
+  }
+  .popup-title{font-size:.92rem}
+  .popup-body .step{padding:7px 9px}
+  .popup-body .step-text{font-size:.8rem}
+}
+
+/* ════════════════════════════════
+   SMALL PHONE  ≤ 360px
+════════════════════════════════ */
+@media(max-width:360px){
+  .cards-grid{grid-template-columns:1fr 1fr;gap:5px}
+  .ct-title{font-size:.74rem}
+}
+
+@keyframes spin{to{transform:rotate(360deg)}}
+.spin{display:inline-block;animation:spin 1s linear infinite;}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="tb-logo">
+    <div class="tb-mark">✦</div>
+    <div class="tb-name">РОЗУМ</div>
+  </div>
+  <button class="sb-toggle" id="sb-toggle" aria-label="Меню">☰</button>
+  <div class="tb-info">
+    <div class="tb-breadcrumb" id="breadcrumb">
+      <span style="color:var(--t3)">400 карток навчання та саморозвитку</span>
+    </div>
+  </div>
+</div>
+
+<div class="app-body">
+  <aside class="sidebar" id="sidebar"></aside>
+  <main class="main" id="main">
+    <div class="empty-state">
+      <div class="es-icon">↖</div>
+      <div class="es-text">Оберіть блок у дереві</div>
+    </div>
+  </main>
+</div>
+<div class="sb-overlay" id="sb-overlay"></div>
+
+<div class="popup-wrap" id="popup-wrap">
+  <div class="popup">
+    <button class="popup-close" id="pclose">✕</button>
+    <div class="popup-num" id="pnum"></div>
+    <div class="popup-title" id="ptitle"></div>
+    <div class="popup-line"></div>
+    <div class="popup-body" id="pbody"></div>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════
+// FULL DATA — 400 cards
+// ═══════════════════════════════════════════
+// ══════════════════════════════════════
+// LAZY DATA LOADER
+// ══════════════════════════════════════
+const D = [];          // filled lazily per category
+const _cache = {};     // catId → cat object
+
+// Stubs: sidebar built from meta, data fetched on demand
+const META = [
+  {id:1,n:"Школа",          sub:"Базові навички",        e:"🎒",col:"#e09848",blocks:4,  total:100},
+  {id:2,n:"Коледж / Ліцей", sub:"Системне навчання",     e:"📐",col:"#5b9fd4",blocks:5,  total:100},
+  {id:3,n:"Університет",    sub:"Глибоке навчання",       e:"🎓",col:"#9b7cec",blocks:5,  total:100},
+  {id:4,n:"Повсякденне життя",sub:"Life Long Learning",   e:"🏡",col:"#52b385",blocks:5,  total:100},
+  {id:5,n:"Адаптивність та безпека",sub:"Розширений довідник",e:"🛡️",col:"#9b7cec",blocks:5,total:500},
+  {id:6,n:"Виживання та мислення",  sub:"Розвиток і виживання",e:"🌲",col:"#52b385",blocks:3,total:300},
+  {id:7,n:"Кар'єра та бізнес",      sub:"Бізнес-довідник",    e:"💼",col:"#e09848",blocks:8,total:800},
+];
+
+function loadCat(id){
+  return new Promise((resolve,reject)=>{
+    if(_cache[id]){resolve(_cache[id]);return;}
+    const s=document.createElement('script');
+    s.src='data/cat-'+id+'.js';
+    window.__catLoaded=(catId,cat)=>{
+      _cache[catId]=cat;
+      resolve(cat);
+    };
+    s.onerror=()=>reject(new Error('Не вдалося завантажити cat-'+id+'.js'));
+    document.head.appendChild(s);
+  });
+}
+
+function showSpinner(){
+  main.innerHTML='<div class="empty-state"><div class="es-icon spin">⟳</div><div class="es-text">Завантаження…</div></div>';
+}
+
+// ═══════════════════════════════════════════
+// STATE & REFS
+// ═══════════════════════════════════════════
+const sidebar=document.getElementById('sidebar');
+const main=document.getElementById('main');
+const breadcrumb=document.getElementById('breadcrumb');
+const popupWrap=document.getElementById('popup-wrap');
+let currentTile=null;
+
+// ═══════════════════════════════════════════
+// POPUP
+// ═══════════════════════════════════════════
+function openCard(num,title,desc,tile){
+  if(currentTile)currentTile.classList.remove('focused');
+  currentTile=tile;
+  tile.classList.add('focused');
+  document.getElementById('pnum').textContent='Картка #'+num;
+  document.getElementById('ptitle').textContent=title;
+  document.getElementById('pbody').innerHTML=desc;
+  popupWrap.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closePopup(){
+  popupWrap.classList.remove('open');
+  document.body.style.overflow='';
+  if(currentTile){currentTile.classList.remove('focused');currentTile=null;}
+}
+document.getElementById('pclose').addEventListener('click',closePopup);
+popupWrap.addEventListener('click',e=>{if(e.target===popupWrap)closePopup();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closePopup();});
+
+// ═══════════════════════════════════════════
+// LOAD BLOCK INTO MAIN
+// ═══════════════════════════════════════════
+function loadBlock(cat,blk){
+  breadcrumb.innerHTML=`<span>${cat.e} ${cat.n}</span><span class="sep">/</span><span class="active">${blk.n}</span>`;
+  main.innerHTML=`<div class="main-blk-head">
+    <span class="mh-emoji">${blk.e}</span>
+    <span class="mh-title">${blk.n}</span>
+    <span class="mh-cnt">${blk.cards.length} карток</span>
+  </div>
+  <div class="cards-grid" id="cg"></div>`;
+  const cg=document.getElementById('cg');
+  blk.cards.forEach(([num,title,desc])=>{
+    const tile=document.createElement('div');
+    tile.className='card-tile';
+    tile.innerHTML=`<div class="ct-num">#${num}</div><div class="ct-title">${title}</div>`;
+    tile.addEventListener('click',()=>openCard(num,title,desc,tile));
+    cg.appendChild(tile);
+  });
+  main.scrollTop=0;
+}
+
+// ═══════════════════════════════════════════
+// BUILD SIDEBAR
+// ═══════════════════════════════════════════
+// ── MOBILE SIDEBAR TOGGLE ──
+const sbOverlay=document.getElementById('sb-overlay');
+const sbToggle=document.getElementById('sb-toggle');
+
+
+function openSidebar(){
+  sidebar.classList.add('mobile-open');
+  sbOverlay.classList.add('show');
+  document.body.style.overflow='hidden';
+}
+function closeSidebar(){
+  sidebar.classList.remove('mobile-open');
+  sbOverlay.classList.remove('show');
+  document.body.style.overflow='';
+}
+sbToggle.addEventListener('click',()=>{
+  sidebar.classList.contains('mobile-open')?closeSidebar():openSidebar();
+});
+sbOverlay.addEventListener('click',closeSidebar);
+
+function buildSidebar(){
+  META.forEach(meta=>{
+    const ci=document.createElement('div');
+    ci.className='cat-item';
+
+    const ch=document.createElement('div');
+    ch.className='cat-head';
+    ch.innerHTML=`<span class="cat-dot" style="background:${meta.col}"></span>
+      <span class="cat-label">${meta.e} ${meta.n}</span>
+      <span class="cat-cnt">${meta.total}</span>
+      <span class="cat-chevron">▶</span>`;
+
+    // placeholder blocks panel — filled after load
+    const bl=document.createElement('div');
+    bl.className='cat-blocks';
+    bl.dataset.catId=meta.id;
+    bl.dataset.loaded='0';
+
+    ch.addEventListener('click',()=>{
+      const wasOpen=ci.classList.contains('open');
+      document.querySelectorAll('.cat-item').forEach(x=>x.classList.remove('open'));
+      if(!wasOpen){
+        ci.classList.add('open');
+        if(bl.dataset.loaded==='0'){
+          bl.innerHTML='<div style="padding:8px 24px;font-size:.72rem;color:var(--t3)">Завантаження…</div>';
+          loadCat(meta.id).then(cat=>{
+            bl.innerHTML='';
+            bl.dataset.loaded='1';
+            cat.blocks.forEach(blk=>{
+              const bh=document.createElement('div');
+              bh.className='blk-head';
+              bh.innerHTML=`<span class="blk-emoji">${blk.e}</span>
+                <span class="blk-name">${blk.n}</span>
+                <span class="blk-cnt">${blk.cards.length}</span>`;
+              bh.addEventListener('click',()=>{
+                document.querySelectorAll('.blk-head').forEach(x=>x.classList.remove('active'));
+                bh.classList.add('active');
+                loadBlock(cat,blk);
+                closePopup();
+                if(window.innerWidth<=900)closeSidebar();
+              });
+              bl.appendChild(bh);
+            });
+          }).catch(()=>{
+            bl.innerHTML='<div style="padding:8px 24px;font-size:.72rem;color:#e05;"> Помилка завантаження</div>';
+          });
+        }
+      }
+    });
+
+    ci.appendChild(ch);
+    ci.appendChild(bl);
+    sidebar.appendChild(ci);
+  });
+}
+
+buildSidebar();
+</script>
+</body>
+</html>
