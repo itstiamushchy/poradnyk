@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>ВІХА — Картки Знань</title>
+<meta name="author" content="Хоменко Олексій Григорович">
+<meta name="copyright" content="© 2024–2026 ITS_tiamushchy. Всі права захищено.">
+<meta name="description" content="ВІХА — Картки Знань. Інтерактивний довідник з 2128 карток для самоосвіти. Автор: Хоменко Олексій Григорович (ITS_tiamushchy).">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -313,9 +316,17 @@ body{background:var(--bg);color:var(--tx);font-family:'Inter',sans-serif;font-si
     width:32px;height:32px;top:12px;right:12px;
     font-size:.9rem;
   }
-  .popup-title{font-size:.92rem}
+  .popup-title{font-size:.92rem;padding-right:36px}
   .popup-body .step{padding:7px 9px}
   .popup-body .step-text{font-size:.8rem}
+
+  /* start page compact */
+  .sp-title{font-size:1.35rem}
+  .sp-stats{gap:16px}
+  .sp-stat-n{font-size:1.2rem}
+
+  /* author badge wrap on narrow */
+  .af-badge{flex-wrap:wrap;justify-content:center;border-radius:12px;padding:8px 12px}
 }
 
 /* ════════════════════════════════
@@ -324,6 +335,41 @@ body{background:var(--bg);color:var(--tx);font-family:'Inter',sans-serif;font-si
 @media(max-width:360px){
   .cards-grid{grid-template-columns:1fr 1fr;gap:5px}
   .ct-title{font-size:.74rem}
+  .sp-title{font-size:1.1rem;letter-spacing:.1em}
+  .sp-sub{font-size:.6rem;letter-spacing:.2em}
+  .sp-stats{gap:10px}
+  .sp-stat-n{font-size:1rem}
+  .af-badge{font-size:.7rem}
+}
+
+/* ════════════════════════════════
+   AUTHOR FOOTER
+════════════════════════════════ */
+.author-footer{
+  margin-top:48px;
+  padding:20px 0 8px;
+  border-top:1px solid var(--bd);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:8px;
+  text-align:center;
+}
+.af-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--sf);
+  border:1px solid var(--bd);
+  border-radius:40px;
+  padding:6px 14px 6px 10px;
+  font-size:.78rem;color:var(--t2);
+  text-decoration:none;
+  transition:border-color .18s,color .18s;
+}
+.af-badge:hover{border-color:var(--ac);color:var(--ac)}
+.af-badge svg{opacity:.6}
+.af-copy{font-size:.72rem;color:var(--t3)}
+@media(max-width:540px){
+  .author-footer{margin-top:32px}
 }
 
 /* ════════════════════════════════
@@ -474,6 +520,13 @@ body.light .tt-thumb{transform:translateX(16px);background:var(--ac)}
         <span class="sp-hint-arrow">←</span>
         <span>Оберіть розділ у бічній панелі</span>
       </div>
+      <div class="author-footer">
+        <a class="af-badge" href="https://github.com/ITS-tiamushchy" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.603-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.912.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.682-.103-.254-.446-1.27.098-2.645 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.375.202 2.391.1 2.645.64.698 1.028 1.591 1.028 2.682 0 3.841-2.337 4.687-4.565 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+          ITS_tiamushchy · Хоменко Олексій Григорович
+        </a>
+        <div class="af-copy" id="af-copy"></div>
+      </div>
     </div>
   </main>
 </div>
@@ -563,6 +616,13 @@ function showStartPage(){
       <div class="sp-stat"><div class="sp-stat-n">43</div><div class="sp-stat-l">Блоків</div></div>
     </div>
     <div class="sp-hint"><span class="sp-hint-arrow">←</span><span>Оберіть розділ у бічній панелі</span></div>
+    <div class="author-footer">
+      <a class="af-badge" href="https://github.com/ITS-tiamushchy" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.603-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.912.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.682-.103-.254-.446-1.27.098-2.645 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.375.202 2.391.1 2.645.64.698 1.028 1.591 1.028 2.682 0 3.841-2.337 4.687-4.565 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+        ITS_tiamushchy · Хоменко Олексій Григорович
+      </a>
+      <div class="af-copy">© 2024–2026 ITS_tiamushchy. Всі права захищено.</div>
+    </div>
   </div>`;
 }
 function showSpinner(){
@@ -715,6 +775,14 @@ document.getElementById('theme-toggle').addEventListener('click',()=>{
 });
 
 buildSidebar();
+
+// ═══════════════════════════════════════════
+// AUTHOR FOOTER — dynamic year
+// ═══════════════════════════════════════════
+(function(){
+  var el=document.getElementById('af-copy');
+  if(el) el.textContent='© 2024–'+new Date().getFullYear()+' ITS_tiamushchy. Всі права захищено.';
+})();
 </script>
 </body>
 </html>
