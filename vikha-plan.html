@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>ВІХА — Стратегічний план розвитку 2027</title>
+<style>
+:root{
+  --bg:#0f0f14;--sb:#15151c;--bd:rgba(255,255,255,.07);
+  --tx:#e4e4ef;--t2:rgba(228,228,239,.62);--t3:rgba(228,228,239,.35);
+  --ac:#9b7cec;--acr:155,124,236;
+  --c1:#e09848;--c2:#5b9fd4;--c3:#52b385;--c4:#e06060;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--tx);font-family:'Georgia',serif;line-height:1.8;font-size:16px}
+.wrap{max-width:860px;margin:0 auto;padding:60px 32px 100px}
+.cover{text-align:center;padding:70px 0 60px;border-bottom:1px solid var(--bd);margin-bottom:56px}
+.cover-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(var(--acr),.12);border:1px solid rgba(var(--acr),.25);border-radius:20px;padding:6px 16px;font-size:.8rem;color:var(--ac);letter-spacing:.05em;margin-bottom:24px}
+.cover h1{font-size:2.6rem;font-weight:700;line-height:1.2;margin-bottom:16px;color:var(--tx)}
+.cover h1 span{color:var(--ac)}
+.cover-sub{font-size:1.05rem;color:var(--t2);max-width:560px;margin:0 auto 28px}
+.cover-meta{display:flex;justify-content:center;gap:32px;flex-wrap:wrap}
+.meta-item{text-align:center}
+.meta-val{font-size:1.5rem;font-weight:700;color:var(--ac)}
+.meta-label{font-size:.75rem;color:var(--t3);letter-spacing:.04em;margin-top:2px}
+.toc{background:rgba(var(--acr),.05);border:1px solid rgba(var(--acr),.15);border-radius:12px;padding:28px 32px;margin-bottom:52px}
+.toc h2{font-size:.85rem;text-transform:uppercase;letter-spacing:.1em;color:var(--ac);margin-bottom:18px}
+.toc ol{padding-left:20px}
+.toc li{margin:7px 0;color:var(--t2);font-size:.95rem}
+.toc a{color:var(--t2);text-decoration:none}
+.toc a:hover{color:var(--ac)}
+.section{margin-bottom:64px}
+.section-num{font-size:.78rem;text-transform:uppercase;letter-spacing:.12em;color:var(--ac);margin-bottom:10px;font-family:'Inter','Arial',sans-serif}
+h2.section-title{font-size:1.75rem;font-weight:700;color:var(--tx);margin-bottom:24px;line-height:1.3}
+h3{font-size:1.15rem;font-weight:600;color:var(--tx);margin:32px 0 12px}
+h4{font-size:1rem;font-weight:600;color:var(--t2);margin:22px 0 8px}
+p{color:var(--t2);margin-bottom:14px;font-size:.975rem}
+p strong{color:var(--tx)}
+ul,ol{padding-left:22px;margin-bottom:16px}
+li{color:var(--t2);margin:6px 0;font-size:.975rem;line-height:1.65}
+li strong{color:var(--tx)}
+.divider{border:none;border-top:1px solid var(--bd);margin:40px 0}
+.cat-block{background:var(--sb);border:1px solid var(--bd);border-radius:12px;padding:24px 28px;margin:20px 0}
+.cat-block-head{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.cat-icon{font-size:1.4rem}
+.cat-block-title{font-size:1.05rem;font-weight:700;color:var(--tx)}
+.cat-block-cnt{font-size:.78rem;color:var(--t3);margin-left:auto;background:rgba(255,255,255,.04);padding:3px 10px;border-radius:20px;border:1px solid var(--bd)}
+.cat-block p{margin-bottom:8px;font-size:.92rem}
+.blk-list{display:flex;flex-direction:column;gap:6px;margin-top:10px}
+.blk-item{display:flex;gap:10px;align-items:flex-start;padding:8px 12px;background:rgba(255,255,255,.025);border-radius:8px;border:1px solid var(--bd)}
+.blk-em{font-size:.9rem;flex-shrink:0;margin-top:1px}
+.blk-text{font-size:.87rem;color:var(--t2)}
+.callout{border-radius:10px;padding:18px 22px;margin:24px 0}
+.callout.info{background:rgba(91,159,212,.08);border:1px solid rgba(91,159,212,.2)}
+.callout.warn{background:rgba(224,152,72,.08);border:1px solid rgba(224,152,72,.2)}
+.callout.ok{background:rgba(82,179,133,.08);border:1px solid rgba(82,179,133,.2)}
+.callout.crit{background:rgba(224,96,96,.08);border:1px solid rgba(224,96,96,.2)}
+.callout-title{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;font-family:'Inter','Arial',sans-serif}
+.callout.info .callout-title{color:#5b9fd4}
+.callout.warn .callout-title{color:#e09848}
+.callout.ok .callout-title{color:#52b385}
+.callout.crit .callout-title{color:#e06060}
+.callout p{margin:0;font-size:.93rem}
+.comp-table{width:100%;border-collapse:collapse;margin:20px 0;font-size:.88rem}
+.comp-table th{text-align:left;padding:10px 14px;background:rgba(var(--acr),.08);color:var(--ac);font-weight:600;border-bottom:1px solid rgba(var(--acr),.2);font-family:'Inter','Arial',sans-serif;font-size:.8rem;text-transform:uppercase;letter-spacing:.06em}
+.comp-table td{padding:10px 14px;border-bottom:1px solid var(--bd);color:var(--t2);vertical-align:top}
+.comp-table tr:last-child td{border-bottom:none}
+.badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:.75rem;font-weight:600}
+.badge-free{background:rgba(82,179,133,.15);color:#52b385}
+.badge-paid{background:rgba(224,96,96,.15);color:#e06060}
+.badge-freemium{background:rgba(224,152,72,.15);color:#e09848}
+.roadmap{display:flex;flex-direction:column;gap:0}
+.phase{display:flex;gap:20px;position:relative}
+.phase-line{display:flex;flex-direction:column;align-items:center;flex-shrink:0}
+.phase-dot{width:36px;height:36px;border-radius:50%;border:2px solid var(--ac);background:rgba(var(--acr),.12);display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;color:var(--ac);flex-shrink:0}
+.phase-connector{flex:1;width:2px;background:var(--bd);min-height:24px;margin:4px 0}
+.phase-body{padding:4px 0 32px}
+.phase-label{font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;color:var(--ac);margin-bottom:6px;font-family:'Inter','Arial',sans-serif}
+.phase-title{font-size:1.05rem;font-weight:700;color:var(--tx);margin-bottom:10px}
+.price-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin:20px 0}
+.price-card{background:var(--sb);border:1px solid var(--bd);border-radius:12px;padding:20px}
+.price-card.featured{border-color:rgba(var(--acr),.4);background:rgba(var(--acr),.05)}
+.price-name{font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:var(--t3);margin-bottom:8px;font-family:'Inter','Arial',sans-serif}
+.price-val{font-size:1.5rem;font-weight:700;color:var(--tx);margin-bottom:4px}
+.price-period{font-size:.78rem;color:var(--t3)}
+.price-features{margin-top:14px;padding-top:14px;border-top:1px solid var(--bd)}
+.price-features li{font-size:.82rem;color:var(--t2);margin:5px 0;list-style:none;padding-left:0;display:flex;gap:7px;align-items:flex-start}
+.pf-icon{color:var(--ac);flex-shrink:0;margin-top:1px}
+.footer{margin-top:80px;padding-top:32px;border-top:1px solid var(--bd);text-align:center}
+.footer p{font-size:.82rem;color:var(--t3)}
+.stat-row{display:flex;gap:16px;flex-wrap:wrap;margin:20px 0}
+.stat-box{background:var(--sb);border:1px solid var(--bd);border-radius:10px;padding:16px 20px;flex:1;min-width:140px}
+.stat-box-val{font-size:1.4rem;font-weight:700;color:var(--ac)}
+.stat-box-label{font-size:.78rem;color:var(--t3);margin-top:3px}
+blockquote{border-left:3px solid var(--ac);padding:12px 20px;margin:20px 0;background:rgba(var(--acr),.04);border-radius:0 8px 8px 0}
+blockquote p{font-style:italic;color:var(--t2);margin:0}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="cover">
+  <div class="cover-badge">📋 Стратегічний документ · Листопад 2026</div>
+  <h1>ВІХА — <span>Картки Знань</span><br>Стратегічний план розвитку 2027</h1>
+  <p class="cover-sub">Повний аналіз поточного стану продукту, пропозиції нових розділів, нових напрямків розвитку, конкурентного середовища, стратегічного вектору та рекомендацій щодо монетизації</p>
+  <div class="cover-meta">
+    <div class="meta-item"><div class="meta-val">2 128</div><div class="meta-label">Карток</div></div>
+    <div class="meta-item"><div class="meta-val">7</div><div class="meta-label">Розділів</div></div>
+    <div class="meta-item"><div class="meta-val">43</div><div class="meta-label">Блоки</div></div>
+    <div class="meta-item"><div class="meta-val">0</div><div class="meta-label">Залежностей</div></div>
+  </div>
+</div>
+
+<div class="toc">
+  <h2>Зміст</h2>
+  <ol>
+    <li><a href="#s0">Поточний стан і сильні сторони продукту</a></li>
+    <li><a href="#s1">Нові розділи контенту — CAT-8 і далі</a></li>
+    <li><a href="#s2">Нові технічні та продуктові напрямки</a></li>
+    <li><a href="#s3">Конкурентне середовище — хто і що робив</a></li>
+    <li><a href="#s4">Стратегічний вектор — куди рухатись</a></li>
+    <li><a href="#s5">Монетизація — продати чи залишити безкоштовним</a></li>
+    <li><a href="#s6">Дорожня карта по фазах</a></li>
+  </ol>
+</div>
+
+<!-- ПОТОЧНИЙ СТАН -->
+<div class="section" id="s0">
+  <div class="section-num">Вступ · Поточний стан</div>
+  <h2 class="section-title">Де ми зараз — чесна оцінка продукту</h2>
+
+  <p>ВІХА — це офлайн-готовий прогресивний веб-застосунок (PWA), написаний на чистому HTML/CSS/JavaScript без жодної зовнішньої залежності. Увесь код і контент постачаються в одному репозиторії на GitHub Pages і доступні за адресою <strong>itstiamushchy.github.io/poradnyk</strong>. На сьогодні застосунок містить <strong>2 128 карток</strong>, організованих у 7 категорій та 43 тематичні блоки, охоплюючи шлях від шкільного навчання до підприємництва, безпеки та виживання.</p>
+
+  <p>Кожна картка побудована за єдиною перевіреною структурою: ключовий принцип у блоці rule-note, покрокова інструкція від 3 до 10 кроків у кольорових блоках (c1–c4), та узагальнення у final-note. Ця однорідність формату — не просто дизайнерське рішення, а глибоке педагогічне вкорінення: предсказуваний скаффолд дозволяє мозку швидше засвоювати нову інформацію, бо когнітивне навантаження на розуміння структури відсутнє.</p>
+
+  <div class="stat-row">
+    <div class="stat-box"><div class="stat-box-val">CAT-1</div><div class="stat-box-label">Школа · 121 картка · 5 блоків</div></div>
+    <div class="stat-box"><div class="stat-box-val">CAT-2</div><div class="stat-box-label">Коледж/Ліцей · 100 карток · 5 блоків</div></div>
+    <div class="stat-box"><div class="stat-box-val">CAT-3</div><div class="stat-box-label">Університет · 120 карток · 6 блоків</div></div>
+    <div class="stat-box"><div class="stat-box-val">CAT-4</div><div class="stat-box-label">Повсякденне · 165 карток · 9 блоків</div></div>
+    <div class="stat-box"><div class="stat-box-val">CAT-5</div><div class="stat-box-label">Адаптивність · 522 картки · 7 блоків</div></div>
+    <div class="stat-box"><div class="stat-box-val">CAT-6</div><div class="stat-box-label">Виживання · 300 карток · 3 блоки</div></div>
+    <div class="stat-box"><div class="stat-box-val">CAT-7</div><div class="stat-box-label">Кар'єра та бізнес · 800 карток · 8 блоків</div></div>
+  </div>
+
+  <div class="callout ok">
+    <div class="callout-title">✅ Сильні сторони продукту</div>
+    <p><strong>Нульові залежності.</strong> Відсутність npm/CDN означає повний контроль над кодом і даними. Жодних зламів через зовнішні пакети. Жодних проблем з ліцензуванням. Жодного постачальника, від якого можна залежати. <strong>Офлайн-готовність</strong> — критично важливо в умовах нестабільного інтернету та відключень електроенергії в Україні. <strong>Авторський контент</strong> — не UGC, якість контрольована автором. <strong>Унікальна ніша</strong> — поєднання life skills, виживання і бізнесу в одному продукті не має прямих аналогів на українському ринку. <strong>Нульові хостинг-витрати</strong> — GitHub Pages, нульова інфраструктура, нульові операційні витрати.</p>
+  </div>
+
+  <div class="callout warn">
+    <div class="callout-title">⚠️ Поточні технічні обмеження</div>
+    <p>Відсутній механізм інтервального повторення (spaced repetition) — ВІХА залишається довідником, а не тренажером. Немає глобального пошуку по картках. Немає статистики прогресу користувача між сесіями. Мобільний UX потребує покращення: немає swipe-жестів та нижньої навігації. Немає механізму монетизації. Немає механізму збору зворотного зв'язку від користувачів (аналітики, bug reports, пропозицій).</p>
+  </div>
+
+  <p>Незважаючи на обмеження, ВІХА являє собою рідкісний випадок продукту, де <strong>якість контенту перевищує якість технічної реалізації</strong>. Це виграшна позиція: технічні покращення реалізуються швидко, а якісний контент — це роки накопиченої роботи, яку неможливо відтворити за тижні. Саме тому стратегія розвитку повинна починатись з технічної доробки, щоб повністю реалізувати потенціал існуючого контенту — і лише потім масштабувати обсяг.</p>
+</div>
+
+<hr class="divider">
+
+<!-- НОВІ РОЗДІЛИ -->
+<div class="section" id="s1">
+  <div class="section-num">Розділ 1</div>
+  <h2 class="section-title">Нові розділи контенту — CAT-8 і далі</h2>
+
+  <p>Аналіз поточних семи категорій виявляє чіткі змістовні прогалини. Нижче — детальний опис семи нових категорій, упорядкованих за пріоритетом від критичного до бажаного. Пріоритет визначається трьома критеріями: суспільна актуальність для України у 2026–2027 роках, відсутність якісного аналогу на ринку та ширина потенційної аудиторії.</p>
+
+  <div class="cat-block">
+    <div class="cat-block-head">
+      <div class="cat-icon">🩺</div>
+      <div class="cat-block-title">CAT-8 — Медицина та перша допомога</div>
+      <div class="cat-block-cnt">Пріоритет: Критичний · ~250 карток</div>
+    </div>
+    <p><strong>Обґрунтування.</strong> В умовах повномасштабного вторгнення медична грамотність є буквально питанням виживання. Щоденні артилерійські обстріли, мінна небезпека, масова мобілізація — все це створює попит на практичні медичні знання, якого раніше в Україні ніколи не було. CAT-5 містить окремі елементи першої допомоги, але вони розпорошені між психологічними і цифровими темами. Медицина заслуговує на власну повноцінну категорію.</p>
+    <p><strong>Особливість контенту.</strong> На відміну від класичного медичного підручника, ВІХА повинна давати алгоритми дій у реальних ситуаціях: "що робити прямо зараз, якщо...", без надмірної теорії. Формат картки ідеально підходить для такого контенту: покрокова дія, яку можна виконати навіть під стресом.</p>
+    <div class="blk-list">
+      <div class="blk-item"><div class="blk-em">🩹</div><div class="blk-text"><strong>Перша допомога при травмах:</strong> зупинка кровотечі (джгут, тампонада, компресія), іммобілізація переломів, лікування опіків, рани і їх обробка, принципи MARCH і TCCC (Tactical Combat Casualty Care) — стандарт НАТО для поля бою</div></div>
+      <div class="blk-item"><div class="blk-em">❤️‍🔥</div><div class="blk-text"><strong>Невідкладні стани:</strong> серцевий напад (алгоритм дій), інсульт (FAST протокол — Face, Arms, Speech, Time), анафілаксія та алергічна реакція, переохолодження і теплова удар, утоплення, отруєння газом</div></div>
+      <div class="blk-item"><div class="blk-em">💊</div><div class="blk-text"><strong>Базова фармакологія для непрофесіоналів:</strong> принципи прийому антибіотиків (коли починати, коли зупинятись), знеболюючі (різниця між НПЗП, парацетамолом, опіоїдами), небезпечні комбінації ліків, комплектація аптечки першої допомоги (IFAK)</div></div>
+      <div class="blk-item"><div class="blk-em">🏥</div><div class="blk-text"><strong>Хронічні захворювання в польових умовах:</strong> самоконтроль при діабеті без інсуліну та глюкометра, гіпертонічний криз без таблеток, астматичний напад, епілептичний напад — алгоритми дій свідка і самодопомоги</div></div>
+      <div class="blk-item"><div class="blk-em">🌿</div><div class="blk-text"><strong>Санітарія і гігієна в екстремальних умовах:</strong> знезараження питної води (кип'ятіння, таблетки, фільтрація), профілактика інфекційних захворювань без аптеки, рани і недопущення сепсису в польових умовах</div></div>
+      <div class="blk-item"><div class="blk-em">🧠</div><div class="blk-text"><strong>Психологічна перша допомога (ПСП):</strong> протокол підтримки людини в гострому стресі (не плутати з психотерапією), ознаки ПТСР у себе і близьких, коли необхідна фахова допомога</div></div>
+    </div>
+    <p style="margin-top:14px;font-size:.88rem;color:var(--t3)"><strong>Аудиторія:</strong> широка — від студентів медичних спеціальностей до цивільних і військовослужбовців. Особлива актуальність для волонтерів, медичних інструкторів, батьків і всіх, хто може опинитись у ситуації без доступу до медичної допомоги.</p>
+  </div>
+
+  <div class="cat-block">
+    <div class="cat-block-head">
+      <div class="cat-icon">💻</div>
+      <div class="cat-block-title">CAT-9 — Технології та ІТ для всіх</div>
+      <div class="cat-block-cnt">Пріоритет: Високий · ~200 карток</div>
+    </div>
+    <p><strong>Обґрунтування.</strong> ІТ-грамотність стала базовою навичкою 21-го століття не менше, ніж вміння читати. ВІХА вже охоплює цифрову безпеку (CAT-5), але не стосується практичного використання технологій для роботи і навчання. Ринок праці 2026 року вимагає від кожного спеціаліста розуміння AI-інструментів, хмарних сервісів та базової автоматизації — незалежно від спеціальності.</p>
+    <div class="blk-list">
+      <div class="blk-item"><div class="blk-em">🤖</div><div class="blk-text"><strong>AI та автоматизація у щоденній роботі:</strong> ефективне використання ChatGPT, Claude, Gemini (промпт-інжиніринг на практичному рівні); автоматизація рутинних задач без програмування; розуміння обмежень AI і коли йому не довіряти</div></div>
+      <div class="blk-item"><div class="blk-em">📊</div><div class="blk-text"><strong>Офісні інструменти на практичному рівні:</strong> Excel/Google Sheets — формули (VLOOKUP, IF, SUMIF), зведені таблиці, базові графіки; Google Workspace — спільна робота, коментарі, версії; Canva — базові принципи для не-дизайнерів</div></div>
+      <div class="blk-item"><div class="blk-em">🌐</div><div class="blk-text"><strong>Мережі та хмара для непрограмістів:</strong> як влаштований VPN і навіщо він потрібен; хмарне зберігання (безпека, налаштування доступу); базові поняття про сервери, домени, SSL — мінімум для розмови з ІТ-фахівцем або постачальником послуг</div></div>
+      <div class="blk-item"><div class="blk-em">🔧</div><div class="blk-text"><strong>Апаратне забезпечення для непрограмістів:</strong> ПК і ноутбук — базовий догляд (чищення, охолодження, апгрейд RAM/SSD), діагностика поширених проблем без майстра; смартфон — налаштування, безпека, відновлення після збою</div></div>
+    </div>
+  </div>
+
+  <div class="cat-block">
+    <div class="cat-block-head">
+      <div class="cat-icon">🌍</div>
+      <div class="cat-block-title">CAT-10 — Мови та міжкультурна комунікація</div>
+      <div class="cat-block-cnt">Пріоритет: Високий для діаспори · ~180 карток</div>
+    </div>
+    <p><strong>Обґрунтування.</strong> Понад 6 мільйонів українців зараз живуть за кордоном — переважно в Польщі, Німеччині, Великій Британії та Чехії. Мовний бар'єр залишається однією з ключових проблем адаптації. Важливо: ВІХА не замінює мовні курси — вона дає практичний мінімум для виживання у конкретних ситуаціях: адміністративне листування, медичні ситуації, пошук роботи.</p>
+    <div class="blk-list">
+      <div class="blk-item"><div class="blk-em">🇬🇧</div><div class="blk-text"><strong>Ділова англійська (B1–B2 практика):</strong> листування (email-формули, тон, структура), переговори (ключові фрази згоди/незгоди/відтермінування), презентації (opening, signposting, closing), співбесіда (competency-based questions, відповіді STAR)</div></div>
+      <div class="blk-item"><div class="blk-em">🇵🇱</div><div class="blk-text"><strong>Польська для адаптації (A2 практика):</strong> адміністративна лексика (PESEL, Urząd skarbowy, ZUS, NFZ), медична лексика (опис симптомів, візит до лікаря), пошук роботи (оголошення про вакансії, договір, зарплата), побутова комунікація (транспорт, магазин, оренда)</div></div>
+      <div class="blk-item"><div class="blk-em">🤝</div><div class="blk-text"><strong>Міжкультурна комунікація:</strong> ділові культури різних країн (ієрархія, пунктуальність, пряма vs непряма комунікація); невербальні сигнали і їх культурна варіативність; типові помилки при міжнародних переговорах з представниками різних культур</div></div>
+      <div class="blk-item"><div class="blk-em">📝</div><div class="blk-text"><strong>Офіційне листування та документи:</strong> структура заяви, скарги, резюме, мотиваційного листа на різних мовах; формальні vs неформальні регістри; юридична мова для непрофесіоналів</div></div>
+    </div>
+  </div>
+
+  <div class="cat-block">
+    <div class="cat-block-head">
+      <div class="cat-icon">🌱</div>
+      <div class="cat-block-title">CAT-11 — Дім, агро та господарство</div>
+      <div class="cat-block-cnt">Пріоритет: Середній · ~150 карток</div>
+    </div>
+    <p><strong>Обґрунтування.</strong> Ніхто з конкурентів не охоплює цю нішу. В умовах відключень електроенергії, перебоїв у постачанні продуктів харчування та зростаючого інтересу до продовольчої безпеки, практичні знання про домогосподарство набули нової актуальності для широкої аудиторії. Особливо цінний блок про енергетичну незалежність — актуальна тема для кожного українця.</p>
+    <div class="blk-list">
+      <div class="blk-item"><div class="blk-em">🔌</div><div class="blk-text"><strong>Енергетична незалежність:</strong> сонячні панелі базово (вибір, підключення, обслуговування), генератори і паливо (обслуговування, безпечне використання в приміщенні), павербанки і ДБЖ (вибір ємності, підключення критичного обладнання), виживання без електрики (пріоритети, планування)</div></div>
+      <div class="blk-item"><div class="blk-em">🌿</div><div class="blk-text"><strong>Городництво і садівництво:</strong> основи вирощування базових культур у відкритому ґрунті та контейнерах, компостування, боротьба зі шкідниками без хімії, зберігання врожаю</div></div>
+      <div class="blk-item"><div class="blk-em">🏗️</div><div class="blk-text"><strong>Дрібний ремонт і будівництво:</strong> базові сантехнічні роботи (замінити кран, усунути течу), базова електрика (замінити розетку, автоматичний вимикач), столярні роботи (підготовка поверхні, кріплення); коли викликати майстра, а коли зробити самому — критерії рішення</div></div>
+      <div class="blk-item"><div class="blk-em">🫙</div><div class="blk-text"><strong>Консервування та заготівлі:</strong> базові методи збереження їжі (консервування, заморозка, сушіння, квашення); безпека при консервуванні (ботулізм і як його уникнути); формування запасів на випадок НС (що, скільки, ротація)</div></div>
+    </div>
+  </div>
+
+  <div class="cat-block">
+    <div class="cat-block-head">
+      <div class="cat-icon">🏛️</div>
+      <div class="cat-block-title">CAT-12 — Право України поглиблено</div>
+      <div class="cat-block-cnt">Пріоритет: Середній · ~180 карток</div>
+    </div>
+    <p><strong>Обґрунтування.</strong> CAT-5 вже містить юридичний блок, але дуже стисло. В умовах воєнного стану правова грамотність набула критичного значення: мобілізація, майнові питання, переміщення, статус ВПО, взаємодія з державними органами — це щоденні питання мільйонів українців. Відповідна юридична освіта — не академічна, а практична — рятує від грубих помилок.</p>
+    <div class="blk-list">
+      <div class="blk-item"><div class="blk-em">⚖️</div><div class="blk-text"><strong>Право під час воєнного стану:</strong> обмеження прав і свобод в умовах воєнного стану, права і обов'язки цивільних і військових, мобілізація — правова база і підстави для відстрочки, статус ВПО і пов'язані з ним права</div></div>
+      <div class="blk-item"><div class="blk-em">👨‍👩‍👧</div><div class="blk-text"><strong>Сімейне право:</strong> укладення і розірвання шлюбу, аліменти (підстави, розмір, стягнення), опіка і піклування, майнові права подружжя при розлученні — алгоритми дій у типових ситуаціях</div></div>
+      <div class="blk-item"><div class="blk-em">🏢</div><div class="blk-text"><strong>Трудове право поглиблено:</strong> незаконне звільнення і захист (алгоритм дій), трудовий договір vs ЦПД (різниця і ризики), охорона праці (права працівника), дистанційна робота (особливості оформлення і захисту)</div></div>
+      <div class="blk-item"><div class="blk-em">🏠</div><div class="blk-text"><strong>Нерухомість і право власності:</strong> купівля-продаж нерухомості (алгоритм перевірки, ризики, нотаріус), оренда (договір, права орендаря і орендодавця, депозит), спадщина (прийняття, відмова, строки)</div></div>
+      <div class="blk-item"><div class="blk-em">💻</div><div class="blk-text"><strong>Цифрове право:</strong> GDPR і захист персональних даних (права суб'єкта даних, як подати скаргу), авторське право в інтернеті (що можна використовувати, а що ні), відповідальність за публікації в соціальних мережах</div></div>
+    </div>
+  </div>
+
+  <div class="cat-block">
+    <div class="cat-block-head">
+      <div class="cat-icon">💰</div>
+      <div class="cat-block-title">CAT-13 — Фінансова грамотність поглиблена</div>
+      <div class="cat-block-cnt">Пріоритет: Середній · ~160 карток</div>
+    </div>
+    <p><strong>Обґрунтування.</strong> CAT-7 вже охоплює базові фінансові концепти в контексті бізнесу і кар'єри. Але особисті фінанси — інвестиції, пенсійне планування, страхування, кредити — заслуговують на власний розділ. Особливо актуально для молоді, яка тільки починає заробляти і не розуміє, як управляти грошима в довгостроковій перспективі.</p>
+    <div class="blk-list">
+      <div class="blk-item"><div class="blk-em">📈</div><div class="blk-text"><strong>Інвестиції базово:</strong> акції, облігації, ETF — чим відрізняються і як обирати; ризик і прибутковість (базовий баланс); диверсифікація без складних формул; як відкрити брокерський рахунок і не зробити грубих помилок</div></div>
+      <div class="blk-item"><div class="blk-em">🏦</div><div class="blk-text"><strong>Нерухомість як інвестиція:</strong> купити vs орендувати — реальний розрахунок; іпотека в Україні (умови, підводні камені, дострокове погашення); інвестиція в оренду (доходність, ризики, податки)</div></div>
+      <div class="blk-item"><div class="blk-em">🛡️</div><div class="blk-text"><strong>Страхування:</strong> обов'язкові vs добровільні види; страхування здоров'я, майна, авто — на що звертати увагу при виборі полісу; страховий випадок — алгоритм дій</div></div>
+      <div class="blk-item"><div class="blk-em">📊</div><div class="blk-text"><strong>Оподаткування в Україні:</strong> ПДФО, ЄСВ, єдиний податок — базові ставки і хто їх платить; ФОП (фізична особа-підприємець) — відкриття, ведення, закриття; податкова декларація — коли подавати і як</div></div>
+    </div>
+  </div>
+
+  <div class="cat-block">
+    <div class="cat-block-head">
+      <div class="cat-icon">🎨</div>
+      <div class="cat-block-title">CAT-14 — Творчість та самовираження</div>
+      <div class="cat-block-cnt">Пріоритет: Нижчий · ~100 карток</div>
+    </div>
+    <p><strong>Обґрунтування.</strong> Розширює аудиторію ВІХА за межі "прагматичного навчання". Є аудиторія, яка хоче навчитись висловлювати себе через різні медіа — від письма до фотографії — але не хоче платити за курси чи проходити академічну програму. Цей розділ може стати "вхідними дверима" для нової аудиторії, яка потім залишиться заради інших категорій.</p>
+    <div class="blk-list">
+      <div class="blk-item"><div class="blk-em">✍️</div><div class="blk-text"><strong>Письмо та сторітелінг:</strong> структура оповіді (герой, виклик, трансформація), голос автора (як знайти свій стиль), написання нон-фікшн (підбір фактів, структура аргументу), короткі форми для соціальних мереж (хук, тіло, заклик)</div></div>
+      <div class="blk-item"><div class="blk-em">📐</div><div class="blk-text"><strong>Основи дизайну для непрофесіоналів:</strong> колір (колесо, контраст, психологія кольору), типографіка (читабельність, ієрархія), композиція (правило третин, білий простір, рівновага) — мінімум для самостійного створення охайних матеріалів</div></div>
+      <div class="blk-item"><div class="blk-em">📸</div><div class="blk-text"><strong>Фотографія на смартфон:</strong> базові правила кадрування (правило третин, лінії, рамки), робота зі світлом (золота година, жорстке vs м'яке), обробка фото у безкоштовних додатках без надмірних фільтрів</div></div>
+    </div>
+  </div>
+
+  <div class="callout info">
+    <div class="callout-title">📋 Порядок додавання розділів</div>
+    <p><strong>1-й пріоритет:</strong> CAT-8 Медицина — актуально зараз, немає аналогів, рятує життя. Навіть 50 карток із тематики MARCH і невідкладних станів вже мають значну цінність. <strong>2-й:</strong> CAT-9 ІТ — масова аудиторія, монетизація через B2B (корпоративний онбординг). <strong>3-й:</strong> CAT-10 Мови — діаспора, 6+ млн потенційних користувачів у Польщі, Німеччині та Великій Британії. <strong>4-й+:</strong> CAT-11–14 — за запитом від аудиторії і наявністю ресурсів автора. Не варто додавати всі розділи одночасно — це розмиє фокус і знизить якість.</p>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- НОВІ НАПРЯМКИ -->
+<div class="section" id="s2">
+  <div class="section-num">Розділ 2</div>
+  <h2 class="section-title">Нові технічні та продуктові напрямки</h2>
+
+  <h3>2.1 Spaced Repetition System — ключовий продуктовий gap</h3>
+  <p>Поточна ВІХА — це довідник. Користувач відкриває картку, читає, закриває. Немає механізму, який <em>примушує</em> повертатись до матеріалу до того, як він забудеться. Це ключовий продуктовий розрив, що відрізняє ВІХА від Anki, Brainscape і Quizlet.</p>
+  <p>Психологічна наука однозначна: без повторення матеріал забувається за кривою Еббінгауза. Через 1 день забувається близько 70% нової інформації. Через тиждень — понад 90%. Алгоритм SM-2 (або його сучасніша версія FSRS v5) дозволяє планувати повторення так, щоб картка з'являлась саме тоді, коли мозок найбільш схильний її забути, але ще пам'ятає. Це підвищує ефективність навчання в 2–3 рази порівняно з лінійним читанням.</p>
+  <p><strong>Технічна реалізація.</strong> Увесь SRS реалізується на vanilla JS + LocalStorage без backend: кнопки "Знаю" / "Складно" / "Не знаю" на картці; збереження прогресу у вигляді об'єкта <code>{cardId: {ease, interval, nextReview, reps}}</code>; розрахунок дати наступного показу; розділ "Повторення сьогодні" у навігації; загальна статистика засвоєння.</p>
+
+  <h3>2.2 Глобальний пошук по всіх картках</h3>
+  <p>При 2 128 картках орієнтація без пошуку — серйозна проблема. Знайти картку про "принцип Парето" або "SPIN-продажі" без навігації по всіх розділах — фактично неможливо. Пошукове поле у топбарі з fuzzy-match по назвах карток і rule-note текстах — одна з найочікуваніших функцій. При зростанні до 5 000+ карток: Web Worker для індексування у фоні. Технічно реалізується без зовнішніх бібліотек — простий substring match або мікробібліотека Fuse.js (3 КБ, без npm).</p>
+
+  <h3>2.3 Режими навчання</h3>
+  <p>Поточний режим — "Довідник" — переглянь картку. Нові режими, кожен з яких розширює аудиторію і підвищує цінність продукту:</p>
+  <ul>
+    <li><strong>Режим "Тест" (flip card):</strong> показується тільки назва картки, користувач сам пригадує і потім відкриває відповідь. Класичний flashcard-досвід.</li>
+    <li><strong>Режим "Квіз":</strong> показується назва картки плюс 4 варіанти відповідей (rule-note), 1 правильний. Гейміфікація, підходить для мобільного, легше засвоюється. Варіанти генеруються з інших карток того ж блоку — реалізація без бази даних.</li>
+    <li><strong>Режим "Марафон":</strong> пройти всі картки вибраного блоку підряд без зупинки. Прогресбар, результат наприкінці (кількість "Знаю" vs "Не знаю"). Підходить для підготовки до іспитів чи співбесіди.</li>
+    <li><strong>Режим "Вчитель":</strong> показати картку класу — повноекранний режим для педагогів, з покроковим розкриттям (спершу тільки назва, потім кроки, потім final-note). Перетворює ВІХА на інструмент для аудиторії.</li>
+  </ul>
+
+  <h3>2.4 Мобільний UX — конкретні покращення</h3>
+  <p>Поточний сайдбар-лейаут добре працює на десктопі, але на мобільному — незручний. Пріоритетні покращення: swipe-жести ліворуч/праворуч для перегортання карток у блоці; нижня навігаційна панель (bottom tab bar з іконками) для мобільних замість бокового меню; повноекранний режим перегляду картки з tap-to-reveal, як у Anki; haptic feedback (вібрація) при відповіді "Знаю/Не знаю" — посилює відчуття інтерактивності.</p>
+
+  <h3>2.5 PWA install prompt та офлайн-покращення</h3>
+  <p>PWA-функціональність вже є, але вона "прихована". Більшість користувачів не знає, що ВІХУ можна встановити як додаток на головний екран. Потрібно: явна кнопка "Встановити як додаток" у топбарі (з'являється після першого відвідування і натискання beforeinstallprompt); Service Worker з явною стратегією cache-first для даних і network-first для нових версій; плашка "Доступне оновлення контенту — оновити зараз?" при релізі нових категорій.</p>
+
+  <h3>2.6 Система прогресу і профіль без backend</h3>
+  <p>LocalStorage зберігає ID прочитаних карток, оцінки SRS, загальну статистику. Відображення: мінікалендар-heatmap активності (як у GitHub — сітка 52×7 з кольоровою інтенсивністю за кількістю карток), відсоток вивченого по кожному розділу (progress ring), загальний streak-лічильник ("12 днів підряд"), загальна кількість вивчених карток за весь час. Прогрес зберігається у браузері — без реєстрації, без серверів.</p>
+
+  <h3>2.7 Цільові "пакети" і версії</h3>
+  <p>Великий продукт з 2 128+ картками — важкий для першого знайомства нового користувача. Пропозиція: паралельно з повною версією випускати легкі цільові "пакети" — окремі мінімальні збірки з фокусованим контентом. Кожен пакет менший, швидший, легший для цільового просування. Технічно — той самий код, різні data-файли:</p>
+  <ul>
+    <li><strong>ВІХА·Школяр:</strong> CAT-1 + CAT-2 для учнів 5–11 класів і їх батьків</li>
+    <li><strong>ВІХА·Захист:</strong> CAT-5 + CAT-6 + CAT-8 для підготовки до НС і воєнного часу — найбільш "соціально важливий" пакет</li>
+    <li><strong>ВІХА·Бізнес:</strong> CAT-7 для підприємців, HR-фахівців і корпоративного онбордингу</li>
+    <li><strong>ВІХА·Студент:</strong> CAT-2 + CAT-3 для абітурієнтів і студентів</li>
+  </ul>
+
+  <h3>2.8 API та White-label — B2B напрямок</h3>
+  <p>Перспективний B2B-напрямок — надати школам, університетам і компаніям можливість використовувати движок ВІХА зі своїм контентом і брендом. Мінімальний варіант: стандартизований JSON-формат даних, який будь-хто може підключити до свого білого домену (self-hosted). Розширений варіант: hosted API з авторизацією для корпоративних клієнтів, аналітика засвоєння на рівні команди. Це трансформує ВІХА з продукту для кінцевих користувачів у платформу для організацій.</p>
+</div>
+
+<hr class="divider">
+
+<!-- КОНКУРЕНТИ -->
+<div class="section" id="s3">
+  <div class="section-num">Розділ 3</div>
+  <h2 class="section-title">Конкурентне середовище — хто і що робив</h2>
+
+  <p>Перш ніж визначати стратегію, важливо розуміти конкурентний ландшафт із правильної точки зору. ВІХА не є унікальною в категорії "флешкарти" — там десятки гравців. Але ВІХА унікальна в категорії "практичний україномовний life-skills довідник у форматі offline-ready PWA без реєстрації". Це фундаментально різні ринкові позиції, і конкурентний аналіз має це відображати.</p>
+
+  <h3>3.1 Глобальні гравці — детальний аналіз</h3>
+
+  <table class="comp-table">
+    <thead>
+      <tr><th>Продукт</th><th>Модель</th><th>Сильні сторони</th><th>Слабкі сторони</th><th>Порівняння з ВІХА</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Anki</strong></td>
+        <td><span class="badge badge-free">Безкоштовний</span></td>
+        <td>Найпотужніший SRS (FSRS v5), відкритий код, тисячі розширень, 20+ мов</td>
+        <td>Жахливий UI, висока крива входу, нема готового life-skills контенту, desktop-first підхід</td>
+        <td>Інструмент, не продукт. Anki — порожній тренажер для тих, хто сам створить контент. ВІХА — готовий довідник. Різні ринки, не прямі конкуренти.</td>
+      </tr>
+      <tr>
+        <td><strong>Quizlet</strong></td>
+        <td><span class="badge badge-freemium">Freemium</span></td>
+        <td>300M+ користувачів, AI-генерація (Q-Chat), величезна бібліотека UGC-карток, відмінний мобільний додаток</td>
+        <td>SRS (Spaced Repetition) за paywall ($7.99/міс), UGC контент непередбачуваної якості, нема українського life-skills контенту, потрібна реєстрація</td>
+        <td>ВІХА виграє якістю контенту, офлайн-доступом, відсутністю реєстрації і специфічністю для України. Quizlet виграє масштабом бібліотеки і UX для студентів.</td>
+      </tr>
+      <tr>
+        <td><strong>Brainscape</strong></td>
+        <td><span class="badge badge-freemium">Freemium</span></td>
+        <td>Confidence-based repetition (оцінка 1-5 замість бінарної), marketplaces готових decks, наукова база</td>
+        <td>Переважно англомовний і академічний контент, платні premium decks від експертів, слабкий мобільний UX</td>
+        <td>Схожа ідея якісного курованого контенту, різна аудиторія. Brainscape не заходить на укр. ринок і не має life-skills фокусу.</td>
+      </tr>
+      <tr>
+        <td><strong>RemNote</strong></td>
+        <td><span class="badge badge-freemium">Freemium</span></td>
+        <td>Нотатки + flashcards + SRS в одному, потужний, популярний у медичних студентів</td>
+        <td>Складний, перевантажений функціями, не для масової аудиторії, потрібна реєстрація</td>
+        <td>Різна аудиторія: RemNote — для студентів-дослідників і "knowledge workers", ВІХА — для всіх, хто хоче навчитись практичним навичкам.</td>
+      </tr>
+      <tr>
+        <td><strong>Knowt</strong></td>
+        <td><span class="badge badge-freemium">Freemium</span></td>
+        <td>AI-генерація карток з PDF/нотаток, зручний для студентів-старшокласників, безкоштовний рівень щедрий</td>
+        <td>Контент генерується з матеріалів студента, а не авторський, нема life skills розділів, потрібна реєстрація</td>
+        <td>Різна концепція: Knowt генерує з вашого матеріалу, ВІХА — авторський перевірений контент. Доповнюють одне одного.</td>
+      </tr>
+      <tr>
+        <td><strong>Memrise</strong></td>
+        <td><span class="badge badge-freemium">Freemium</span></td>
+        <td>Мовне навчання з відео від носіїв, гейміфікація, 50+ мов</td>
+        <td>Тільки мови, нема life skills, платний повний доступ</td>
+        <td>Не конкурент: різні ніші. Memrise — мовна платформа, ВІХА — life skills.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>3.2 Українські та регіональні гравці — ретельний огляд</h3>
+  <p>Тут картина різко змінюється. Прямих аналогів ВІХА на українському ринку немає. Є суміжні продукти, які охоплюють частину аудиторії, але в іншому форматі:</p>
+  <ul>
+    <li><strong>Платформа "На урок"</strong> — найбільша українська освітня платформа. Тести для шкіл у форматі SCORM і Moodle, академічний контент, орієнтована на вчителів і школярів. Не flashcard-формат, не life skills.</li>
+    <li><strong>Всеосвіта</strong> — навчальний контент для вчителів і учнів (розробки уроків, тести). Платна підписка, не PWA, не offline. Академічний підхід.</li>
+    <li><strong>Тямущий (ITS_tiamushchy)</strong> — тести у форматі xlsx для підготовки до НМТ. Інший формат (тести vs картки), інша аудиторія (абітурієнти), але та сама лінійка автора. Доповнює ВІХА, не конкурує.</li>
+    <li><strong>Telegram-боти з тестами</strong> — різноманітні боти від ентузіастів. Зручні для мобільного, але без офлайн-доступу, без структурованого контенту, без PWA, залежні від месенджера.</li>
+    <li><strong>Українські колоди в Anki</strong> — є ентузіасти, які створюють українськомовні колоди для Anki. Якість непередбачувана, нема life skills, нема централізованого хабу.</li>
+    <li><strong>Мовні застосунки (Twigit, UkrLingo)</strong> — спрямовані на вивчення УКРАЇНСЬКОЇ мови для іноземців або слов'янських мов для українців. Вузька ніша, не life skills.</li>
+  </ul>
+
+  <div class="callout ok">
+    <div class="callout-title">🏆 Ключовий висновок</div>
+    <p>В Україні немає продукту, який би поєднував: <strong>структурований авторський контент</strong> по life skills → <strong>offline-ready PWA без реєстрації</strong> → <strong>актуальні теми воєнного часу</strong> (виживання, тактична медицина, юридична грамотність) → <strong>якість, контрольована автором</strong>. ВІХА займає незаповнену нішу, і єдина конкуренція — це нехтування освітою взагалі, а не інший продукт. Перший, хто заповнить цю нішу якісно, отримає сильні мережеві ефекти — і ВІХА вже тут.</p>
+  </div>
+
+  <h3>3.3 Що можна взяти від конкурентів — список для реалізації</h3>
+  <ul>
+    <li><strong>Від Anki:</strong> SRS алгоритм (обов'язково реалізувати у ВІХА) і відкритий формат даних (дозволити імпортувати/експортувати)</li>
+    <li><strong>Від Quizlet:</strong> режими навчання (Test mode, Match, Learn) — гейміфікація підвищує залученість; мобільний UX (swipe, bottom nav)</li>
+    <li><strong>Від Brainscape:</strong> оцінка впевненості (1–5) замість бінарного "знаю/не знаю" — точніший сигнал для SRS і більш інформативна статистика</li>
+    <li><strong>Від Knowt:</strong> у майбутньому — AI-генерація нових карток за темою (автор задає тему, AI генерує черновик, автор редагує)</li>
+    <li><strong>Від Memrise:</strong> streak і гейміфікація (серія днів поспіль) — сильно підвищує повернення користувачів; щоденне нагадування (push notification через PWA)</li>
+  </ul>
+</div>
+
+<hr class="divider">
+
+<!-- КУДИ РУХАТИСЬ -->
+<div class="section" id="s4">
+  <div class="section-num">Розділ 4</div>
+  <h2 class="section-title">Стратегічний вектор — куди рухатись</h2>
+
+  <h3>4.1 Три стратегічні опції — чесне порівняння</h3>
+
+  <h4>Стратегія А — "Довідник стає тренажером" (вертикальна глибина)</h4>
+  <p>Залишити 7 розділів, але зробити їх ідеальними. Додати SRS, пошук, режими навчання і статистику. ВІХА перетворюється з довідника, який читають один раз, у тренажер, до якого повертаються щодня. Це не розширення контенту, а підвищення цінності існуючого. Ефективна навчальна система з 2 128 картками — це набагато цінніший продукт, ніж погана навчальна система з 5 000 карток.</p>
+  <p><strong>Плюси:</strong> не потрібно писати новий контент (найвитратніша частина), швидше і дешевше реалізувати, підвищує engagement і retention, відкриває шлях до монетизації (SRS можна поставити за premuim). <strong>Мінуси:</strong> не розширює аудиторію, нові розділи відкладаються.</p>
+
+  <h4>Стратегія Б — "Розширення контенту" (горизонтальне)</h4>
+  <p>Пріоритет — нові розділи. CAT-8 Медицина, CAT-9 ІТ, CAT-10 Мови. Ціль: 4 000+ карток, 10+ розділів, охоплення нових аудиторій. Збільшення обсягу = збільшення SEO-охоплення (більше пошукових запитів) = більше органічного трафіку.</p>
+  <p><strong>Плюси:</strong> більша аудиторія, більше ключових слів для органічного пошуку, більша perceived value ("10 розділів" звучить більш вражаюче, ніж "7"). <strong>Мінуси:</strong> потребує часу на написання якісного контенту (найважче), без SRS нові картки так само "читаються один раз і забуваються" — додавати без покращення UX неефективно.</p>
+
+  <h4>Стратегія В — "ВІХА як платформа" (B2B і API)</h4>
+  <p>ВІХА як рушій для шкіл і корпоративних клієнтів. Відкрити стандартизований формат даних, дозволити школам завантажувати власний контент на движку ВІХА. Корпоративні ліцензії, аналітика команд, white-label рішення.</p>
+  <p><strong>Плюси:</strong> найбільший комерційний потенціал. B2B контракти дають передбачуваний стабільний дохід. <strong>Мінуси:</strong> найбільш технічно складна і ресурсомістка стратегія, потребує backend, активних продажів і підтримки клієнтів — це вже не indie developer, а маленька компанія.</p>
+
+  <div class="callout info">
+    <div class="callout-title">💡 Рекомендована стратегія: А → Б → В (послідовно, не одночасно)</div>
+    <p>Стратегії логічно слідують одна за одною і підсилюють одна одну. Покращений UX (стратегія А) підвищує цінність нового контенту (стратегія Б). Великий якісний продукт (Б) відкриває двері до B2B (В). Спроба реалізувати всі три одночасно — шлях до burnout і купи незавершених функцій. Вертикальна глибина передує горизонтальному розширенню.</p>
+  </div>
+
+  <h3>4.2 Нові аудиторії — хто ще не охоплений</h3>
+  <ul>
+    <li><strong>Українці за кордоном (6+ млн):</strong> є попит на україномовний контент про адаптацію, мову країни перебування, юридичні права емігранта. CAT-10 і CAT-12 прямо для них. Ця аудиторія активна в інтернеті і готова ділитись корисним контентом.</li>
+    <li><strong>Військові і волонтери:</strong> CAT-8 (тактична медицина), розширений CAT-5. Дуже специфічна, але важлива і лояльна аудиторія. Якщо ВІХА стане "довідником бійця" — це потужний бренд.</li>
+    <li><strong>Вчителі і викладачі:</strong> режим "Вчитель" і можливість формувати "урок" з N карток перетворює ВІХА на інструмент для класу. Вчителі — активні ретранслятори: "поділитись з учнями" = органічне розповсюдження.</li>
+    <li><strong>Корпоративні HR-фахівці:</strong> CAT-7 Кар'єра та бізнес вже є, але без корпоративного пакету (аналітика команди, груповий прогрес) вхід у B2B закритий. Онбординг нових співробітників через ВІХА — готовий B2B pitch.</li>
+    <li><strong>Студенти медичних і правових спеціальностей:</strong> після виходу CAT-8 і CAT-12 — природна аудиторія. Університетське партнерство: "ВІХА рекомендована кафедрою" = маркер довіри і масштаб.</li>
+  </ul>
+
+  <h3>4.3 Позиціонування і ключове повідомлення</h3>
+  <p>Поточне позиціонування ВІХА можна описати так: "безкоштовний онлайн-довідник з картками знань". Це слабке позиціонування — надто широке і не передає ключову цінність. Пропоновані варіанти:</p>
+
+  <blockquote><p>"Практична енциклопедія українця — все, що треба знати для школи, університету, кар'єри і виживання. Офлайн. Без реєстрації."</p></blockquote>
+
+  <p>Або коротше: <em>"Знання, які рятують — від навчання до виживання"</em>. Яке б позиціонування не було обрано, ключові повідомлення залишаються незмінними: офлайн-готовий, без реєстрації, авторський перевірений контент, специфічно для України і для українців.</p>
+
+  <h3>4.4 Просування без бюджету</h3>
+  <p>Органічне розповсюдження — головний канал для безкоштовного продукту. Конкретні дії:</p>
+  <ul>
+    <li>Пост у DOU.ua (спільнота українських розробників) — технічна стаття про архітектуру zero-dependency PWA. DOU має 100k+ читачів.</li>
+    <li>Telegram-канали вчителів, волонтерів і підприємців — цільова аудиторія, висока конверсія, якщо продукт справді корисний</li>
+    <li>GitHub як вітрина — якісний README з скріншотами, посилання на product hunt</li>
+    <li>Колаборація з іншими освітніми проектами в Україні — крос-просування</li>
+    <li>PR через CAT-8 (медицина в умовах війни) — це конкретна суспільно важлива тема, яка привертає увагу журналістів і редакторів</li>
+    <li>Відеоогляди на YouTube і TikTok — короткий демо-ролик "5 карток, які може врятувати тобі життя" з посиланням на ВІХА здатний зібрати тисячі переглядів органічно, без рекламного бюджету</li>
+    <li>Шкільні і університетські чати — вчителі, які знайшли ВІХА корисним, стають амбасадорами: один вчитель = 30+ учнів = десятки нових користувачів на один пост. Педагогічна спільнота традиційно активно ділиться якісними ресурсами в групах</li>
+    <li>Open Source як магніт: повністю відкритий репозиторій на GitHub приваблює розробників, які можуть зробити pull request з новими картками або перекладом — зовнішні внески без зарплати</li>
+  </ul>
+</div>
+
+<hr class="divider">
+
+<!-- МОНЕТИЗАЦІЯ -->
+<div class="section" id="s5">
+  <div class="section-num">Розділ 5</div>
+  <h2 class="section-title">Монетизація — продати чи залишити безкоштовним</h2>
+
+  <p>Це центральне питання документу, і воно заслуговує на чесний, детальний аналіз без романтизації жодної з позицій. Тут будуть розглянуті аргументи обох сторін, різні моделі монетизації та конкретна рекомендація з обґрунтуванням.</p>
+
+  <h3>5.1 Аргументи на користь безкоштовного доступу</h3>
+  <ul>
+    <li><strong>Соціальна місія і моральна позиція:</strong> ВІХА містить контент про виживання, тактичну безпеку, психологічну першу допомогу і юридичну грамотність під час воєнного стану. В умовах активної фази збройного конфлікту робити такий контент платним — морально сумнівно. Людина в евакуації, з обмеженим доступом до інтернету, без кредитної картки, яка шукає "як зупинити кровотечу" або "мої права при мобілізації" — має отримати цю інформацію безкоштовно. Це не просто маркетингова позиція — це ціннісна позиція, яка збігається з ідентичністю автора як українського розробника під час війни.</li>
+    <li><strong>Вірусний потенціал і органічне зростання:</strong> безкоштовний продукт розповсюджується органічно. Задоволений користувач → 2–3 нових. Paywall ламає цей ланцюжок. Без рекламного бюджету органічний ріст — головний і єдиний реалістичний канал. Quizlet досягнув 300M користувачів саме завдяки тому, що протягом перших років залишався безкоштовним і набирав масу.</li>
+    <li><strong>Репутація і бренд ITS_tiamushchy:</strong> ВІХА як безкоштовний суспільно корисний проект — це репутація автора і реклама всієї лінійки продуктів. "Компанія, яка зробила ВІХА безкоштовно" — це довіра, яка монетизується в інших продуктах лінійки (Книгодій, Тямущий, Ятка тощо).</li>
+    <li><strong>Технічні обмеження поточної архітектури:</strong> ВІХА наразі не має backend, немає облікових записів, немає платіжного шлюзу. Щоб додати монетизацію через paywall, потрібно суттєво переробити архітектуру — це витрати часу і ресурсів ДО отримання будь-якого доходу.</li>
+    <li><strong>Конкурентна перевага:</strong> Quizlet платний за SRS, Brainscape платний за premium decks — ВІХА безкоштовна. Це сильне конкурентне повідомлення, особливо для ринку, де середня зарплатня значно нижча, ніж у США чи Англії.</li>
+  </ul>
+
+  <h3>5.2 Аргументи на користь монетизації</h3>
+  <ul>
+    <li><strong>Контент має реальну вартість:</strong> 2 128 карток, кожна вручну написана, з перевіреними фактами, у єдиному форматі — це роки роботи. Роздавати це назавжди безкоштовно означає знецінювати власну інтелектуальну працю і позбавляти себе ресурсу на розвиток.</li>
+    <li><strong>Фінансування якості і розвитку:</strong> без доходу розвиток залежить виключно від вільного часу і ентузіазму автора. Перші ж доходи від ВІХА можна вкласти в написання нових карток, покращення UX, а при масштабуванні — найняти помічника для контенту. Монетизація = ресурс на якість.</li>
+    <li><strong>B2B — не "платити з бідних":</strong> корпоративний клієнт (компанія, університет, НГО) не є "бідною людиною в евакуації". Компанія платить не замість доступу, а за додаткові функції — аналітику команди, брендування, API, пріоритетну підтримку. Корпоративна монетизація не суперечить безкоштовному доступу для фізичних осіб.</li>
+    <li><strong>Психологія цінності:</strong> безкоштовне часто сприймається як менш цінне. Символічна плата (навіть пожертвування) може підвищити відчуття цінності продукту і відповідальність користувача за його використання. Це контрінтуїтивно, але добре задокументовано в поведінковій економіці.</li>
+  </ul>
+
+  <h3>5.3 Порівняльна таблиця моделей монетизації</h3>
+  <table class="comp-table">
+    <thead>
+      <tr><th>Модель</th><th>Технічна складність</th><th>Дохід</th><th>Ризик для бренду</th><th>Рекомендація</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Повністю безкоштовно</strong></td><td>Немає</td><td>Нуль</td><td>Нульовий</td><td>Поточний стан</td></tr>
+      <tr><td><strong>Пожертвування</strong> (Monobank jar, PayPal)</td><td>Дуже низька (одна кнопка)</td><td>Непостійний, малий, але реальний</td><td>Нульовий</td><td>✅ Зробити зараз</td></tr>
+      <tr><td><strong>Freemium</strong> (функції за paywall)</td><td>Середня (потрібен backend для auth)</td><td>Регулярний, передбачуваний</td><td>Низький (якщо контент залишається безкоштовним)</td><td>✅ Фаза 2 (після реалізації SRS)</td></tr>
+      <tr><td><strong>B2B ліцензія</strong></td><td>Висока (API, договори, підтримка)</td><td>Великий, B2B</td><td>Нульовий</td><td>✅ Фаза 3 (при 10k+ користувачів)</td></tr>
+      <tr><td><strong>Paywall на весь контент</strong></td><td>Висока</td><td>Малий (ламає вірусність)</td><td>Високий</td><td>❌ Категорично не рекомендується</td></tr>
+      <tr><td><strong>Продати повністю (M&A)</strong></td><td>Немає (одноразова угода)</td><td>Одноразовий, обмежений</td><td>Втрата контролю над брендом</td><td>❌ Зарано, та й не треба</td></tr>
+    </tbody>
+  </table>
+
+  <h3>5.4 Рекомендована модель: Freemium + Donation + B2B</h3>
+  <p><strong>Принцип: контент — назавжди безкоштовно. Функції — за підпискою.</strong> Це забезпечує соціальну місію і вірусний потенціал, одночасно створюючи стійку модель доходів. Ніхто з конкурентів не ставить весь свій контент за paywall — навіть Quizlet залишає базовий доступ безкоштовним.</p>
+
+  <div class="price-grid">
+    <div class="price-card">
+      <div class="price-name">Безкоштовно · Назавжди</div>
+      <div class="price-val">0 грн</div>
+      <div class="price-period">завжди, без реєстрації</div>
+      <div class="price-features">
+        <ul>
+          <li><span class="pf-icon">✓</span> Весь поточний контент (2 128+ карток)</li>
+          <li><span class="pf-icon">✓</span> Навігація і перегляд карток</li>
+          <li><span class="pf-icon">✓</span> Офлайн PWA без реєстрації</li>
+          <li><span class="pf-icon">✓</span> Нові розділи (з затримкою 30 днів)</li>
+          <li><span class="pf-icon">✓</span> Базова темна/світла тема</li>
+        </ul>
+      </div>
+    </div>
+    <div class="price-card featured">
+      <div class="price-name">Преміум</div>
+      <div class="price-val">79 грн</div>
+      <div class="price-period">на місяць · або 599 грн/рік</div>
+      <div class="price-features">
+        <ul>
+          <li><span class="pf-icon">✓</span> Все з безкоштовного</li>
+          <li><span class="pf-icon">✓</span> SRS алгоритм + статистика прогресу</li>
+          <li><span class="pf-icon">✓</span> Режими "Тест", "Квіз", "Марафон"</li>
+          <li><span class="pf-icon">✓</span> Нові розділи на 30 днів раніше</li>
+          <li><span class="pf-icon">✓</span> Синхронізація між пристроями</li>
+          <li><span class="pf-icon">✓</span> Завантаження PDF для друку</li>
+          <li><span class="pf-icon">✓</span> Пріоритетна підтримка</li>
+        </ul>
+      </div>
+    </div>
+    <div class="price-card">
+      <div class="price-name">Корпоративна</div>
+      <div class="price-val">від 2 500</div>
+      <div class="price-period">грн/міс · від 10 осіб</div>
+      <div class="price-features">
+        <ul>
+          <li><span class="pf-icon">✓</span> Все з Преміум для команди</li>
+          <li><span class="pf-icon">✓</span> Аналітика засвоєння по команді</li>
+          <li><span class="pf-icon">✓</span> Корпоративний брендинг (white-label)</li>
+          <li><span class="pf-icon">✓</span> API для інтеграції в LMS</li>
+          <li><span class="pf-icon">✓</span> Власний контент на движку ВІХА</li>
+          <li><span class="pf-icon">✓</span> Менеджер акаунту</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <h3>5.4а Donation як перший крок — чому варто не зволікати</h3>
+  <p>Кнопка пожертвування (Monobank jar або Buy Me a Coffee) — найшвидший і найбезпечніший спосіб отримати перший сигнал від ринку. Вона не потребує backend, реєстрації чи платіжного шлюзу. Якщо за перший місяць після запуску donation-кнопки жоден користувач не пожертвував — це сигнал або про відсутність аудиторії, або про недостатню цінність продукту. Якщо перші пожертвування надходять за тиждень — це підтвердження, що аудиторія є і продукт цінується. Це найдешевший можливий A/B-тест готовності до монетизації.</p>
+
+  <h3>5.5 Щодо повного продажу ВІХА</h3>
+  <p>Якщо питання стоїть про продаж усього продукту разом із брендом і контентом (M&A), то відповідь однозначна: <strong>не зараз і, мабуть, ніколи</strong>.</p>
+  <p><strong>Оцінка без монетизації мінімальна.</strong> Продукт без доходу оцінюється переважно за технічним активом і потенціалом. Поточна оцінка без монетизації і без SRS — мінімальна. Перш ніж продавати, треба зробити продукт значно ціннішим. Продавати зараз означає продати дешево.</p>
+  <p><strong>ВІХА як флагман бренду.</strong> ВІХА — найкращий публічний приклад того, що може зробити ITS_tiamushchy. Це портфоліо, рекламний носій і демонстрація компетентності. Продати його — означає позбавити себе найкращого підтвердження можливостей для залучення нових клієнтів і партнерів.</p>
+  <p><strong>Альтернатива продажу — white-label ліцензія.</strong> Якщо хтось хоче "мати ВІХА", але автор не хоче продавати — white-label ліцензія: клієнт платить за право використовувати движок зі своїм брендом і контентом, автор зберігає права на оригінал. Це B2B без втрати продукту — найкраще з обох сторін.</p>
+
+  <div class="callout crit">
+    <div class="callout-title">❗ Критичне попередження</div>
+    <p><strong>Запускати Freemium зарано.</strong> Поточна ВІХА без SRS, без пошуку, без мобільного UX — це ще не той продукт, за який люди готові платити на регулярній основі. Запуск монетизації до досягнення product-market fit підірве репутацію ("хочуть грошей за сирий продукт"). Оптимальний threshold для запуску Freemium: SRS + мобільний UX + режими навчання готові — орієнтовно через 4–8 місяців активного розвитку.</p>
+  </div>
+
+  <div class="callout ok">
+    <div class="callout-title">✅ Фінальна рекомендація</div>
+    <p><strong>Не продавати.</strong> Контент — назавжди безкоштовно — це ціннісна позиція, яку не можна здати. Запустити кнопку "Підтримати автора" (Monobank jar) <em>вже зараз</em> — це нічого не коштує і дає перший реальний сигнал від аудиторії. Freemium (SRS і режими за підпискою 79 грн/міс) — після реалізації відповідних функцій. B2B white-label ліцензія — коли є 10 000+ активних користувачів і є що показати корпоративному клієнту. Такий порядок дій зберігає соціальну місію, будує органічне зростання і відкриває стійкий шлях до доходу.</p>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ROADMAP -->
+<div class="section" id="s6">
+  <div class="section-num">Розділ 6</div>
+  <h2 class="section-title">Дорожня карта по фазах</h2>
+
+  <div class="roadmap">
+    <div class="phase">
+      <div class="phase-line">
+        <div class="phase-dot">1</div>
+        <div class="phase-connector"></div>
+      </div>
+      <div class="phase-body">
+        <div class="phase-label">Фаза 1 · 0–3 місяці · Негайно</div>
+        <div class="phase-title">Технічна база і SRS</div>
+        <ul>
+          <li>Реалізувати SRS алгоритм SM-2 на vanilla JS + LocalStorage — це найважливіший крок</li>
+          <li>Додати кнопки оцінки на картці (Знаю / Складно / Не знаю) і розділ "Повторення сьогодні"</li>
+          <li>Глобальний пошук по назвах карток у топбарі</li>
+          <li>Явний PWA install prompt у топбарі після першого відвідування</li>
+          <li>Запустити Monobank jar "підтримати ВІХА" у футері сайту — 15 хвилин роботи, нульовий ризик</li>
+          <li>Розпочати написання CAT-8 Медицина (мінімум 100 карток по темах MARCH і невідкладних станів)</li>
+          <li>Система аналітики (Google Analytics 4 або privacy-friendly аналог Plausible)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="phase-line">
+        <div class="phase-dot">2</div>
+        <div class="phase-connector"></div>
+      </div>
+      <div class="phase-body">
+        <div class="phase-label">Фаза 2 · 3–6 місяців</div>
+        <div class="phase-title">Мобільний UX і режими навчання</div>
+        <ul>
+          <li>Swipe-жести для мобільних і нижня навігаційна панель (bottom tab bar)</li>
+          <li>Режим "Тест" (flip card — показати назву, tap to reveal)</li>
+          <li>Режим "Квіз" (4 варіанти відповідей, генеруються з того ж блоку)</li>
+          <li>Статистика: streak-лічильник, % вивчених по розділах, heatmap активності</li>
+          <li>Завершити CAT-8 Медицина (200–300 карток по всіх блоках)</li>
+          <li>Розпочати CAT-9 ІТ (AI-інструменти і офісні програми — найактуальніші блоки)</li>
+          <li>PR-активність: пост на DOU.ua, Telegram-канали вчителів і волонтерів</li>
+        </ul>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="phase-line">
+        <div class="phase-dot">3</div>
+        <div class="phase-connector"></div>
+      </div>
+      <div class="phase-body">
+        <div class="phase-label">Фаза 3 · 6–12 місяців</div>
+        <div class="phase-title">Freemium і перше зростання</div>
+        <ul>
+          <li>Запуск Freemium підписки (SRS, режими "Тест" і "Квіз", PDF-завантаження за paywall)</li>
+          <li>Мінімальний backend для синхронізації (Supabase або PocketBase — самохостинг)</li>
+          <li>Завершити CAT-9 ІТ і запустити CAT-10 Мови (польська і ділова англійська)</li>
+          <li>Перші партнерства з університетами (демонстрація CAT-8 медичним кафедрам)</li>
+          <li>Ціль: 10 000+ активних користувачів на місяць</li>
+        </ul>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="phase-line">
+        <div class="phase-dot">4</div>
+      </div>
+      <div class="phase-body">
+        <div class="phase-label">Фаза 4 · 12+ місяців</div>
+        <div class="phase-title">B2B і масштабування</div>
+        <ul>
+          <li>Корпоративний пакет з аналітикою, API і брендуванням</li>
+          <li>White-label для університетів і великих роботодавців (перший B2B контракт)</li>
+          <li>Локалізація англійською (діаспора в США, Великій Британії, Канаді)</li>
+          <li>AI-асистент для генерації чорновиків нових карток за темою</li>
+          <li>Ціль: 50 000+ активних користувачів, стабільний місячний дохід</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<div class="section">
+  <div class="section-num">Висновки</div>
+  <h2 class="section-title">Коротко про головне</h2>
+  <div class="callout info"><div class="callout-title">📌 Нові розділи</div><p>Пріоритет 1 — <strong>CAT-8 Медицина</strong> (рятує життя, нема аналогів, максимальна суспільна актуальність). Пріоритет 2 — <strong>CAT-9 ІТ</strong> (масова аудиторія, B2B потенціал). Пріоритет 3 — <strong>CAT-10 Мови</strong> (діаспора, 6+ млн потенційних користувачів). Пріоритет 4+ — CAT-11–14 за результатами фази 1 і відгуками аудиторії.</p></div>
+  <div class="callout info"><div class="callout-title">📌 Нові технічні напрямки</div><p>Перший і найважливіший: <strong>SRS алгоритм SM-2</strong> — трансформує ВІХА з довідника в тренажер. Потім: пошук, мобільний UX, режими навчання, статистика. Пізніше: backend, синхронізація, B2B API. Всі ці функції реалізуються без зміни zero-dependency архітектури — на vanilla JS + LocalStorage.</p></div>
+  <div class="callout info"><div class="callout-title">📌 Аналоги і конкурентна позиція</div><p>Глобальні конкуренти (Anki, Quizlet, Brainscape) існують, але орієнтовані на UGC-контент і не мають українського life-skills фокусу. На українському ринку прямих аналогів немає. ВІХА займає унікальну нішу, яка <strong>поки що не зайнята ніким</strong>. Перший, хто заповнить її якісно, отримає сильну конкурентну позицію.</p></div>
+  <div class="callout info"><div class="callout-title">📌 Стратегічний вектор</div><p>Послідовно: <strong>Стратегія А (SRS + UX) → Б (нові розділи) → В (B2B)</strong>. Не розпорошуватись на всі три одночасно. Перший крок — зробити існуючий продукт значно кращим технічно: SRS і мобільний UX підвищують цінність уже наявних 2 128 карток без написання жодної нової.</p></div>
+  <div class="callout ok"><div class="callout-title">📌 Монетизація</div><p><strong>Не продавати.</strong> Контент — назавжди безкоштовно — це ціннісна позиція і конкурентна перевага. Запустити Monobank jar зараз (15 хвилин роботи). Freemium (SRS і режими за 79 грн/міс) — після реалізації цих функцій, орієнтовно через 6–9 місяців. B2B ліцензія — через 12+ місяців. White-label — альтернатива продажу, що зберігає права автора і відкриває корпоративний ринок.</p></div>
+</div>
+
+<div class="footer">
+  <p>ВІХА — Картки Знань · © 2024–2026 ITS_tiamushchy · Хоменко Олексій Григорович</p>
+  <p style="margin-top:6px">Стратегічний план розвитку · Листопад 2026 · Версія 1.0</p>
+</div>
+
+</div>
+</body>
+</html>
