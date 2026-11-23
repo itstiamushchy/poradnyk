@@ -401,6 +401,56 @@ body.light .tt-thumb{transform:translateX(16px);background:var(--ac)}
 @keyframes spin{to{transform:rotate(360deg)}}
 .spin{display:inline-block;animation:spin 1s linear infinite;}
 
+/* ════════════════════════════════
+   STAR / FAVORITES
+════════════════════════════════ */
+.card-star{
+  position:absolute;top:6px;right:6px;
+  width:22px;height:22px;border-radius:5px;
+  border:none;background:transparent;
+  color:var(--t3);font-size:.85rem;
+  cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;transition:opacity .15s,color .15s,background .12s;
+  line-height:1;padding:0;
+}
+.card-tile:hover .card-star,
+.card-star.starred{opacity:1}
+.card-star.starred{color:#e09848}
+.card-star:hover{background:var(--sfh);color:var(--t2)}
+.card-star.starred:hover{color:#c07020}
+
+.popup-star{
+  position:absolute;top:10px;right:44px;
+  width:26px;height:26px;border-radius:6px;
+  border:1px solid var(--bd);background:transparent;
+  color:var(--t3);font-size:.88rem;
+  cursor:pointer;transition:all .12s;
+  display:flex;align-items:center;justify-content:center;
+}
+.popup-star:hover{background:var(--sfh);color:var(--t2)}
+.popup-star.starred{color:#e09848;border-color:rgba(224,152,72,.4)}
+.popup-star.starred:hover{background:rgba(224,152,72,.1)}
+
+.fav-nav{
+  display:flex;align-items:center;gap:8px;
+  padding:8px 14px 8px 12px;cursor:pointer;
+  transition:background .12s;user-select:none;
+}
+.fav-nav:hover{background:var(--sfh)}
+.fav-nav.active .fav-label{color:var(--ac)}
+.fav-nav.active{background:rgba(var(--acr),.06)}
+.fav-icon{font-size:.85rem;opacity:.7}
+.fav-label{font-size:.78rem;font-weight:600;color:var(--t2);flex:1}
+.fav-badge{
+  font-size:.65rem;color:var(--ac);
+  background:rgba(var(--acr),.12);
+  border:1px solid rgba(var(--acr),.2);
+  padding:1px 7px;border-radius:10px;
+  min-width:20px;text-align:center;
+}
+.fav-badge.empty{background:transparent;border-color:var(--bd);color:var(--t3)}
+
 /* ── START PAGE ── */
 .start-page{
   flex:1;display:flex;align-items:center;justify-content:center;
@@ -535,6 +585,7 @@ body.light .tt-thumb{transform:translateX(16px);background:var(--ac)}
 <div class="popup-wrap" id="popup-wrap">
   <div class="popup">
     <button class="popup-close" id="pclose">✕</button>
+    <button class="popup-star" id="popup-star" title="Додати до вибраного">☆</button>
     <div class="popup-num" id="pnum"></div>
     <div class="popup-title" id="ptitle"></div>
     <div class="popup-line"></div>
@@ -546,11 +597,10 @@ body.light .tt-thumb{transform:translateX(16px);background:var(--ac)}
 // ══════════════════════════════════════
 // LAZY DATA LOADER
 // ══════════════════════════════════════
-const _cache = {};     // catId → cat object
-const _resolvers = {}; // catId → resolve fn (pending loads)
+const _cache={};
+const _resolvers={};
 
-// Stubs: sidebar built from meta, data fetched on demand
-const META = [
+const META=[
   {id:1,n:"Школа",          sub:"Базові навички",        e:"🎒",col:"#e09848",blocks:5,  total:121},
   {id:2,n:"Коледж / Ліцей", sub:"Системне навчання",     e:"📐",col:"#5b9fd4",blocks:5,  total:100},
   {id:3,n:"Університет",    sub:"Глибоке навчання",       e:"🎓",col:"#9b7cec",blocks:6,  total:120},
@@ -560,27 +610,186 @@ const META = [
   {id:7,n:"Кар'єра та бізнес",      sub:"Бізнес-довідник",    e:"💼",col:"#e09848",blocks:8,total:800},
 ];
 
-// Global dispatcher — safe for concurrent loads
 window.__catLoaded=function(catId,cat){
   _cache[catId]=cat;
   if(_resolvers[catId]){_resolvers[catId](cat);delete _resolvers[catId];}
 };
-
 function loadCat(id){
   return new Promise((resolve,reject)=>{
     if(_cache[id]){resolve(_cache[id]);return;}
     _resolvers[id]=resolve;
     const s=document.createElement('script');
     s.src='data/cat-'+id+'.js';
-    s.onerror=()=>{
-      delete _resolvers[id];
-      reject(new Error('Не вдалося завантажити cat-'+id+'.js'));
-    };
+    s.onerror=()=>{delete _resolvers[id];reject(new Error('cat-'+id));};
     document.head.appendChild(s);
   });
 }
 
+// ══════════════════════════════════════
+// FAVORITES
+// ══════════════════════════════════════
+const FAV_KEY='vikha-favs';
+// Map: num → {num, title, desc}
+let favs=new Map();
+
+(function initFavs(){
+  try{
+    const raw=localStorage.getItem(FAV_KEY);
+    if(raw){
+      JSON.parse(raw).forEach(c=>favs.set(c.num,c));
+    }
+  }catch(e){}
+})();
+
+function saveFavs(){
+  try{localStorage.setItem(FAV_KEY,JSON.stringify([...favs.values()]));}catch(e){}
+  updateFavBadge();
+}
+
+function isFav(num){return favs.has(num);}
+
+function toggleFav(num,title,desc){
+  if(favs.has(num)){
+    favs.delete(num);
+  }else{
+    favs.set(num,{num,title,desc});
+  }
+  saveFavs();
+  return favs.has(num);
+}
+
+function updateFavBadge(){
+  const badge=document.getElementById('fav-badge');
+  if(!badge)return;
+  const cnt=favs.size;
+  badge.textContent=cnt;
+  badge.className='fav-badge'+(cnt===0?' empty':'');
+}
+
+function makeTileStar(num,title,desc){
+  const btn=document.createElement('button');
+  btn.className='card-star'+(isFav(num)?' starred':'');
+  btn.title=isFav(num)?'Прибрати з вибраного':'Додати до вибраного';
+  btn.textContent=isFav(num)?'★':'☆';
+  btn.addEventListener('click',e=>{
+    e.stopPropagation();
+    const on=toggleFav(num,title,desc);
+    btn.className='card-star'+(on?' starred':'');
+    btn.textContent=on?'★':'☆';
+    btn.title=on?'Прибрати з вибраного':'Додати до вибраного';
+    // sync popup star if same card is open
+    syncPopupStar(num);
+    // if viewing favorites — refresh
+    if(viewingFavs)loadFavoritesView();
+  });
+  return btn;
+}
+
+let viewingFavs=false;
+
+function syncPopupStar(num){
+  if(currentCardNum!==num)return;
+  const ps=document.getElementById('popup-star');
+  if(!ps)return;
+  const on=isFav(num);
+  ps.className='popup-star'+(on?' starred':'');
+  ps.textContent=on?'★':'☆';
+}
+
+function loadFavoritesView(){
+  viewingFavs=true;
+  document.querySelectorAll('.blk-head').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.cat-item').forEach(x=>x.classList.remove('open'));
+  document.getElementById('fav-nav').classList.add('active');
+
+  breadcrumb.innerHTML='<span>⭐ Вибране</span>';
+
+  if(favs.size===0){
+    main.innerHTML=`<div class="empty-state">
+      <div class="es-icon">⭐</div>
+      <div class="es-text">Вибране порожнє<br><span style="font-size:.75rem;opacity:.6">Натисніть ☆ на картці, щоб додати</span></div>
+    </div>`;
+    main.scrollTop=0;
+    return;
+  }
+
+  main.innerHTML=`<div class="main-blk-head">
+    <span class="mh-emoji">⭐</span>
+    <span class="mh-title">Вибране</span>
+    <span class="mh-cnt">${favs.size} карток</span>
+  </div>
+  <div class="cards-grid" id="cg"></div>`;
+  const cg=document.getElementById('cg');
+  favs.forEach(({num,title,desc})=>{
+    const tile=document.createElement('div');
+    tile.className='card-tile';
+    tile.style.position='relative';
+    tile.innerHTML=`<div class="ct-num">#${num}</div><div class="ct-title">${title}</div>`;
+    tile.appendChild(makeTileStar(num,title,desc));
+    tile.addEventListener('click',()=>openCard(num,title,desc,tile));
+    cg.appendChild(tile);
+  });
+  main.scrollTop=0;
+}
+
+// ══════════════════════════════════════
+// STATE & REFS
+// ══════════════════════════════════════
+const sidebar=document.getElementById('sidebar');
+const main=document.getElementById('main');
+const breadcrumb=document.getElementById('breadcrumb');
+const popupWrap=document.getElementById('popup-wrap');
+let currentTile=null;
+let currentCardNum=null;
+
+// ══════════════════════════════════════
+// POPUP
+// ══════════════════════════════════════
+function openCard(num,title,desc,tile){
+  if(currentTile)currentTile.classList.remove('focused');
+  currentTile=tile;
+  currentCardNum=num;
+  tile.classList.add('focused');
+  document.getElementById('pnum').textContent='Картка #'+num;
+  document.getElementById('ptitle').textContent=title;
+  document.getElementById('pbody').innerHTML=desc;
+  const ps=document.getElementById('popup-star');
+  const on=isFav(num);
+  ps.className='popup-star'+(on?' starred':'');
+  ps.textContent=on?'★':'☆';
+  popupWrap.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closePopup(){
+  popupWrap.classList.remove('open');
+  document.body.style.overflow='';
+  if(currentTile){currentTile.classList.remove('focused');currentTile=null;}
+  currentCardNum=null;
+}
+
+document.getElementById('popup-star').addEventListener('click',()=>{
+  if(currentCardNum===null)return;
+  const num=currentCardNum;
+  const title=document.getElementById('ptitle').textContent;
+  const desc=document.getElementById('pbody').innerHTML;
+  const on=toggleFav(num,title,desc);
+  const ps=document.getElementById('popup-star');
+  ps.className='popup-star'+(on?' starred':'');
+  ps.textContent=on?'★':'☆';
+  // sync tile star
+  if(currentTile){
+    const tileStar=currentTile.querySelector('.card-star');
+    if(tileStar){
+      tileStar.className='card-star'+(on?' starred':'');
+      tileStar.textContent=on?'★':'☆';
+    }
+  }
+  if(viewingFavs)loadFavoritesView();
+});
+
 function showStartPage(){
+  viewingFavs=false;
+  document.getElementById('fav-nav').classList.remove('active');
   breadcrumb.innerHTML='<span style="color:var(--t3)">Картки Знань</span>';
   document.querySelectorAll('.blk-head').forEach(x=>x.classList.remove('active'));
   document.querySelectorAll('.cat-item').forEach(x=>x.classList.remove('open'));
@@ -621,50 +830,22 @@ function showStartPage(){
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.603-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.912.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.682-.103-.254-.446-1.27.098-2.645 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.375.202 2.391.1 2.645.64.698 1.028 1.591 1.028 2.682 0 3.841-2.337 4.687-4.565 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
         ITS_tiamushchy · Хоменко Олексій Григорович
       </a>
-      <div class="af-copy">© 2024–2026 ITS_tiamushchy. Всі права захищено.</div>
+      <div class="af-copy">© 2024–${new Date().getFullYear()} ITS_tiamushchy. Всі права захищено.</div>
     </div>
   </div>`;
 }
-function showSpinner(){
-  main.innerHTML='<div class="empty-state"><div class="es-icon spin">⟳</div><div class="es-text">Завантаження…</div></div>';
-}
 
-// ═══════════════════════════════════════════
-// STATE & REFS
-// ═══════════════════════════════════════════
-const sidebar=document.getElementById('sidebar');
-const main=document.getElementById('main');
-const breadcrumb=document.getElementById('breadcrumb');
-const popupWrap=document.getElementById('popup-wrap');
-let currentTile=null;
-
-// ═══════════════════════════════════════════
-// POPUP
-// ═══════════════════════════════════════════
-function openCard(num,title,desc,tile){
-  if(currentTile)currentTile.classList.remove('focused');
-  currentTile=tile;
-  tile.classList.add('focused');
-  document.getElementById('pnum').textContent='Картка #'+num;
-  document.getElementById('ptitle').textContent=title;
-  document.getElementById('pbody').innerHTML=desc;
-  popupWrap.classList.add('open');
-  document.body.style.overflow='hidden';
-}
-function closePopup(){
-  popupWrap.classList.remove('open');
-  document.body.style.overflow='';
-  if(currentTile){currentTile.classList.remove('focused');currentTile=null;}
-}
-document.querySelector('.tb-logo').addEventListener('click',showStartPage);
+document.querySelector('.tb-logo').addEventListener('click',()=>{showStartPage();closePopup();});
 document.getElementById('pclose').addEventListener('click',closePopup);
 popupWrap.addEventListener('click',e=>{if(e.target===popupWrap)closePopup();});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closePopup();});
 
-// ═══════════════════════════════════════════
+// ══════════════════════════════════════
 // LOAD BLOCK INTO MAIN
-// ═══════════════════════════════════════════
+// ══════════════════════════════════════
 function loadBlock(cat,blk){
+  viewingFavs=false;
+  document.getElementById('fav-nav').classList.remove('active');
   breadcrumb.innerHTML=`<span>${cat.e} ${cat.n}</span><span class="sep">/</span><span class="active">${blk.n}</span>`;
   main.innerHTML=`<div class="main-blk-head">
     <span class="mh-emoji">${blk.e}</span>
@@ -676,20 +857,20 @@ function loadBlock(cat,blk){
   blk.cards.forEach(([num,title,desc])=>{
     const tile=document.createElement('div');
     tile.className='card-tile';
+    tile.style.position='relative';
     tile.innerHTML=`<div class="ct-num">#${num}</div><div class="ct-title">${title}</div>`;
+    tile.appendChild(makeTileStar(num,title,desc));
     tile.addEventListener('click',()=>openCard(num,title,desc,tile));
     cg.appendChild(tile);
   });
   main.scrollTop=0;
 }
 
-// ═══════════════════════════════════════════
+// ══════════════════════════════════════
 // BUILD SIDEBAR
-// ═══════════════════════════════════════════
-// ── MOBILE SIDEBAR TOGGLE ──
+// ══════════════════════════════════════
 const sbOverlay=document.getElementById('sb-overlay');
 const sbToggle=document.getElementById('sb-toggle');
-
 
 function openSidebar(){
   sidebar.classList.add('mobile-open');
@@ -707,23 +888,40 @@ sbToggle.addEventListener('click',()=>{
 sbOverlay.addEventListener('click',closeSidebar);
 
 function buildSidebar(){
+  // ── Вибране (вгорі) ──
+  const favSection=document.createElement('div');
+  favSection.className='sb-section';
+  const favNav=document.createElement('div');
+  favNav.id='fav-nav';
+  favNav.className='fav-nav';
+  const cnt=favs.size;
+  favNav.innerHTML=`<span class="fav-icon">⭐</span>
+    <span class="fav-label">Вибране</span>
+    <span class="fav-badge${cnt===0?' empty':''}" id="fav-badge">${cnt}</span>`;
+  favNav.addEventListener('click',()=>{
+    closePopup();
+    loadFavoritesView();
+    if(window.innerWidth<=900)closeSidebar();
+  });
+  favSection.appendChild(favNav);
+  sidebar.appendChild(favSection);
+
+  // ── Категорії ──
+  const catSection=document.createElement('div');
+  catSection.className='sb-section';
   META.forEach(meta=>{
     const ci=document.createElement('div');
     ci.className='cat-item';
-
     const ch=document.createElement('div');
     ch.className='cat-head';
     ch.innerHTML=`<span class="cat-dot" style="background:${meta.col}"></span>
       <span class="cat-label">${meta.e} ${meta.n}</span>
       <span class="cat-cnt">${meta.total}</span>
       <span class="cat-chevron">▶</span>`;
-
-    // placeholder blocks panel — filled after load
     const bl=document.createElement('div');
     bl.className='cat-blocks';
     bl.dataset.catId=meta.id;
     bl.dataset.loaded='0';
-
     ch.addEventListener('click',()=>{
       const wasOpen=ci.classList.contains('open');
       document.querySelectorAll('.cat-item').forEach(x=>x.classList.remove('open'));
@@ -755,16 +953,16 @@ function buildSidebar(){
         }
       }
     });
-
     ci.appendChild(ch);
     ci.appendChild(bl);
-    sidebar.appendChild(ci);
+    catSection.appendChild(ci);
   });
+  sidebar.appendChild(catSection);
 }
 
-// ═══════════════════════════════════════════
+// ══════════════════════════════════════
 // THEME TOGGLE
-// ═══════════════════════════════════════════
+// ══════════════════════════════════════
 (function(){
   const saved=localStorage.getItem('vikha-theme');
   if(saved==='light')document.body.classList.add('light');
@@ -775,14 +973,6 @@ document.getElementById('theme-toggle').addEventListener('click',()=>{
 });
 
 buildSidebar();
-
-// ═══════════════════════════════════════════
-// AUTHOR FOOTER — dynamic year
-// ═══════════════════════════════════════════
-(function(){
-  var el=document.getElementById('af-copy');
-  if(el) el.textContent='© 2024–'+new Date().getFullYear()+' ITS_tiamushchy. Всі права захищено.';
-})();
 </script>
 </body>
 </html>
